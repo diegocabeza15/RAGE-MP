@@ -208,6 +208,7 @@ for (let i = 0; i < Data.maxLipstickColor; i++)
 // EVENTS
 mp.events.add("toggleCreator", (active, charData) => {
     try {
+        console.log('Probando el evento', active, charData)
         if (active) {
             // Asegurarse de que charData sea una cadena JSON válida
             let parsedData = null;
@@ -331,7 +332,7 @@ function resetCreatorState() {
 
     // Ocultar panel HTML
     const browser = mp.browsers.new(
-        "package://client_package/cef/character/index.html"
+        "package://cef/character/index.html"
     );
     if (browser) {
         browser.execute("hideCharacterPanel()");

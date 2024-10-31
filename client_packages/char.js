@@ -234,19 +234,8 @@ mp.events.add("toggleCreator", (active, charData) => {
 
             // Configurar UI primero
             setupCreatorUI(true);
+            showCreatorPanel()
 
-            // Mostrar el panel con los datos correctos
-            const browser = mp.browsers.new("package://cef/character/index.html");
-            if (browser) {
-                // Esperar a que el navegador esté listo
-                setTimeout(() => {
-                    if (parsedData) {
-                        browser.execute(`showCharacterPanel('${JSON.stringify(parsedData)}')`);
-                    } else {
-                        browser.execute('showCharacterPanel(null)');
-                    }
-                }, 100);
-            }
         } else {
             resetCreatorState();
         }
@@ -297,15 +286,20 @@ function setupCreatorUI(show) {
     }
 }
 
-function showCreatorPanel(data) {
+function showCreatorPanel() {
     // Verificar el formato de los datos antes de pasarlos
     if (typeof data === 'object') {
-        const browser = mp.browsers.new(
-            "package://cef/character/index.html"
-        );
+        // Mostrar el panel con los datos correctos
+        const browser = mp.browsers.new("package://cef/character/index.html");
         if (browser) {
-            // Convertir los datos a una cadena JSON para asegurarse de que se pasen correctamente
-            browser.execute(`showCharacterPanel(${JSON.stringify(data)})`);
+            // Esperar a que el navegador esté listo
+            setTimeout(() => {
+                if (parsedData) {
+                    browser.execute(`showCharacterPanel('${JSON.stringify(parsedData)}')`);
+                } else {
+                    browser.execute('showCharacterPanel(null)');
+                }
+            }, 100);
         }
     } else {
         console.error("Los datos no son un objeto válido:", data);

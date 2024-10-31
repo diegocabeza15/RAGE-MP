@@ -1,0 +1,9 @@
+{
+    "database_url": "postgresql://RAGEMP_owner:jIdriQ78tfVc@ep-tiny-leaf-a50uekiq.us-east-2.aws.neon.tech/RAGEMP?sslmode=require",
+    "db_debug": true,
+    "defaultSpawnPosition": {
+        "x": -1757.12,
+        "y": -739.53,
+        "z": 10
+    }
+}

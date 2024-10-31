@@ -1,0 +1,47 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Compiled files
+dist/
+build/
+
+# Temporary files
+tmp/
+temp/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.vscode/
+.idea/
+
+# RageMP specific
+packages/charcreator/CustomCharacters/
+packages/auth/auth.js.bak
+client_packages/game_resources/
+
+# Ignore any other sensitive or unnecessary files
+*.bak
+*.swp
+*.swo
+*.exe
+*.dll
+*.so
+*.dylib
+*.db
+*.xml
+*.yml
+*.md
+bin/
+*.tar*
+dotnet/

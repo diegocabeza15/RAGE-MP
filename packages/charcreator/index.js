@@ -14,29 +14,29 @@ if (!fs.existsSync(saveDirectory)) {
 }
 
 mp.events.add("playerJoin", (player) => {
-    player.colorForOverlayIdx = function(index) {
+    player.colorForOverlayIdx = function (index) {
         let color;
 
         switch (index) {
             case 1:
                 color = this.customCharacter.BeardColor;
-            break;
+                break;
 
             case 2:
                 color = this.customCharacter.EyebrowColor;
-            break;
+                break;
 
             case 5:
                 color = this.customCharacter.BlushColor;
-            break;
+                break;
 
             case 8:
                 color = this.customCharacter.LipstickColor;
-            break;
+                break;
 
             case 10:
                 color = this.customCharacter.ChestHairColor;
-            break;
+                break;
 
             default:
                 color = 0;
@@ -45,7 +45,7 @@ mp.events.add("playerJoin", (player) => {
         return color;
     };
 
-    player.defaultCharacter = function() {
+    player.defaultCharacter = function () {
         this.customCharacter = {
             Gender: 0,
 
@@ -74,11 +74,11 @@ mp.events.add("playerJoin", (player) => {
         };
 
         for (let i = 0; i < 20; i++) this.customCharacter.Features.push(0.0);
-        for (let i = 0; i < 10; i++) this.customCharacter.Appearance.push({Value: 255, Opacity: 1.0});
+        for (let i = 0; i < 10; i++) this.customCharacter.Appearance.push({ Value: 255, Opacity: 1.0 });
         player.applyCharacter();
     };
 
-    player.applyCharacter = function() {
+    player.applyCharacter = function () {
         this.setCustomization(
             this.customCharacter.Gender == 0,
 
@@ -105,7 +105,7 @@ mp.events.add("playerJoin", (player) => {
         for (let i = 0; i < 10; i++) this.setHeadOverlay(i, [this.customCharacter.Appearance[i].Value, this.customCharacter.Appearance[i].Opacity, this.colorForOverlayIdx(i), 0]);
     };
 
-    player.loadCharacter = function() {
+    player.loadCharacter = function () {
         fs.readFile(`${saveDirectory}/${this.name}.json`, (err, data) => {
             if (err) {
                 if (err.code != "ENOENT") {
@@ -120,13 +120,13 @@ mp.events.add("playerJoin", (player) => {
         });
     };
 
-    player.saveCharacter = function() {
+    player.saveCharacter = function () {
         fs.writeFile(`${saveDirectory}/${this.name}.json`, JSON.stringify(this.customCharacter, undefined, 4), (err) => {
             if (err) console.log(`Couldn't save ${this.name}'s character. Reason: ${err.message}`);
         });
     };
 
-    player.sendToCreator = function() {
+    player.sendToCreator = function () {
         player.preCreatorPos = player.position;
         player.preCreatorHeading = player.heading;
         player.preCreatorDimension = player.dimension;
@@ -136,12 +136,14 @@ mp.events.add("playerJoin", (player) => {
         player.dimension = creatorDimension;
         player.usingCreator = true;
         player.changedGender = false;
+
+        console.log("El jugador está siendo enviado al creador de personajes."); // Mensaje en la terminal
         player.call("toggleCreator", [true, JSON.stringify(player.customCharacter)]);
 
         creatorDimension++;
     };
 
-    player.sendToWorld = function() {
+    player.sendToWorld = function () {
         player.position = player.preCreatorPos;
         player.heading = player.preCreatorHeading;
         player.dimension = player.preCreatorDimension;
@@ -167,7 +169,7 @@ mp.events.add("creator_Save", (player, gender, parentData, featureData, appearan
     player.customCharacter.Appearance = JSON.parse(appearanceData);
 
     let hairAndColors = JSON.parse(hairAndColorData);
-    player.customCharacter.Hair = {Hair: hairAndColors[0], Color: hairAndColors[1], HighlightColor: hairAndColors[2]};
+    player.customCharacter.Hair = { Hair: hairAndColors[0], Color: hairAndColors[1], HighlightColor: hairAndColors[2] };
     player.customCharacter.EyebrowColor = hairAndColors[3];
     player.customCharacter.BeardColor = hairAndColors[4];
     player.customCharacter.EyeColor = hairAndColors[5];

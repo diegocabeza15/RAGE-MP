@@ -1,3 +1,4 @@
+
 var loginBrowser, loginCam;
 
 mp.events.add('client:loginData', (username, password) => {
@@ -68,4 +69,5 @@ mp.events.add('client:disableLoginCamera', () => {
     }
     mp.game.cam.renderScriptCams(false, false, 0, false, false);
     mp.players.local.freezePosition(false);
+    mp.events.call("client:openCreatorUI");
 });

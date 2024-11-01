@@ -30,7 +30,7 @@ const database = require('./db.js');
         await database.initializeDatabase();
         await mp.test.init();
         mp.events.delayInitialization = false;    //  Players cannot join until this is false
-    } catch(e) {
+    } catch (e) {
         console.log(e)
     }
 })();

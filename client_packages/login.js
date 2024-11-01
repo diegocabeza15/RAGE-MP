@@ -10,9 +10,9 @@ mp.events.add('client:registerData', (username, email, password) => {
 })
 
 mp.events.add('client:loginHandler', (handle) => {
-    switch(handle){
-		case 'success':
-		case 'registered':
+    switch (handle) {
+        case 'success':
+        case 'registered':
             mp.events.call('client:hideLoginScreen');
             break;
         default:
@@ -37,7 +37,7 @@ mp.events.add('client:hideLoginScreen', () => {
         loginBrowser.destroy();
         loginBrowser = null;
     }
-    
+
     mp.players.local.freezePosition(false);
     mp.game.ui.setMinimapVisible(false);
     mp.gui.chat.activate(true);
@@ -69,5 +69,5 @@ mp.events.add('client:disableLoginCamera', () => {
     }
     mp.game.cam.renderScriptCams(false, false, 0, false, false);
     mp.players.local.freezePosition(false);
-    mp.events.call("client:openCreatorUI");
+    //mp.events.call("client:openCreatorUI");
 });

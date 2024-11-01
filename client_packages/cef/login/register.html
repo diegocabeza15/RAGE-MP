@@ -1,46 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="register.css" rel="stylesheet" />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <span id="detail2">
+        <img src="assets/2.webp" alt="detail">
+    </span>
+    <article>
+      <h1>Server Diego Cabeza</h1>
+      <form>
+        <fieldset class="alert alert-danger" role="alert"></fieldset>
 
-        <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="../assets/css/global-theme.css" rel="stylesheet"/>
-        <link href="style.css" rel="stylesheet"/>
+        <fieldset class="form-group">
+          <label>Usuario</label>
+          <input
+            type="text"
+            name="username"
+            id="registerName"
+            min="3"
+            class="form-control"
+            placeholder="Nombre de Usuario..."
+            required
+          />
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Correo</label>
+          <input
+            type="email"
+            name="email"
+            id="registerEmail"
+            class="form-control"
+            placeholder="Ingresa tu Correo..."
+            required
+          />
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Contraseña</label>
+          <input
+            type="password"
+            name="password"
+            id="registerPass"
+            min="5"
+            class="form-control"
+            placeholder="Ingresa una Contraseña..."
+            required
+          />
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Repetir Contraseña</label>
+          <input
+            type="password"
+            name="password"
+            id="registerPass2"
+            min="5"
+            class="form-control"
+            placeholder="Repite la Contraseña..."
+            required
+          />
+        </fieldset>
 
-        <script src="../assets/js/jquery-3.2.1.js"></script>
-    </head>
-    <body>
-        <div class="card">
-            <div class="card-body">
-                <h1 class="text-center">Template Server</h1>
-                <form>
-					<div class="alert alert-danger" role="alert"></div>
-					
-                    <div class="form-group">
-                        <label for="loginName">Username</label>
-                        <input type="text" name="username" id="registerName" min="3" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="registerEmail">Email Address</label>
-                        <input type="email" name="email" id="registerEmail"class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginName">Password</label>
-                        <input type="password" name="password" id="registerPass" min="5" class="form-control" required>
-                        <small class="form-text text-muted">Minimum of 5 characters long</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginName">Password</label>
-                        <input type="password" name="password" id="registerPass2" min="5" class="form-control" required>
-					</div>
-					
-                    <button type="submit" id="registerBtn" class="btn btn-success btn-block" onclick="sendAccountInfo(1);">Register</button>
-                    <small>Already have an account? <a href="index.html">Go back</a></small>
-                </form>
-            </div>
-		</div>
-		
-        <script src="main.js"></script>
-    </body>
+        <button
+          type="submit"
+          id="registerBtn"
+          onclick="sendAccountInfo(1);"
+        >
+          Registrar<span></span>
+        </button>
+        <small>¿Ya estás registrado?<a href="index.html">Go back</a></small>
+      </form>
+    </article>
+    <small class="form-text text-muted">La contraseña debe tener como MINIMO 5 caracteres.</small>
+  </body>
 </html>

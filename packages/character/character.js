@@ -13,6 +13,9 @@ mp.events.addCommand('personalizar', (player) => {
         return;
     }
 
+    // Establecer variable para tracking
+    player.setVariable('inCharacterCreator', true);
+    
     // Verificar si el jugador tiene una skin de freemode
     if (!freemodeCharacters.includes(player.model)) {
         player.outputChatBox("Solo puedes personalizar personajes freemode.");

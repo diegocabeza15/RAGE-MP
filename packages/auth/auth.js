@@ -15,8 +15,7 @@ mp.events.add('server:registerAccount', async (player, username, email, password
                 console.log(`${username} has registered a new account.`)
                 successLoginHandle(player, 'registered', username);
                 player.call('toggleCreator', [true, null]);
-                player.model = mp.joaat("mp_m_freemode_01"); // Modelo masculino por defecto
-                player.defaultCharacter(); // Inicializar personaje por defecto
+                player.model = mp.joaat("mp_m_freemode_01"); // Modelo personaj
                 player.sendToCreator();
             } else {
                 failedLoginHandle(player, 'takeninfo');
@@ -84,10 +83,6 @@ mp.events.add('playerQuit', async (player) => {
     if (player.getVariable('loggedIn') === false) return;
     let name = player.name;
     try {
-        // Guardar el personaje si existe
-        if (player.customCharacter) {
-            player.saveCharacter();
-        }
 
         const result = await mp.db.query(
             'UPDATE accounts SET position = $1 WHERE username = $2 RETURNING *',
@@ -220,16 +215,6 @@ mp.events.add('serverRegisterAccount', async (player, username, password, email)
 
         // Establecer modelo por defecto
         player.model = mp.joaat("mp_m_freemode_01");
-
-        // Esperar un momento para asegurar que el modelo se cargó
-        setTimeout(() => {
-            // Posicionar al jugador
-            player.position = new mp.Vector3(402.8664, -996.4108, -99.00027);
-            player.heading = -185.0;
-
-            // Activar creator
-            player.call('startCharacterCreator');
-        }, 500);
 
     } catch (error) {
         console.error("Error en registro:", error);

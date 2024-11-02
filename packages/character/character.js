@@ -37,7 +37,7 @@ mp.events.addCommand('personalizar', (player) => {
     creatorCam.setActive(true); // Activar la cámara
     creatorCam.pointAtCoord(player.position.x, player.position.y, player.position.z); // Hacer que la cámara mire al jugador
     mp.game.cam.renderScriptCams(true, false, 0, true, false); // Renderizar la cámara
-    player.call('client:openCreatorUI', mp.character.data)
+    player.call('client:openCreatorUI', mp.character)
 })
 
 mp.events.add('server:saveCharacter', async (player) => {

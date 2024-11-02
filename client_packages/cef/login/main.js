@@ -69,11 +69,6 @@ function sendAccountInfo(state) {
         return;
       }
 
-      if (!loginName.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-        throwError("invalid-info");
-        return;
-      }
-
       if (registerPass.length < 5) {
         throwError("password-length");
         return;
@@ -117,4 +112,45 @@ function throwError(err) {
 
 mp.events.add("b.throwError", (err) => {
   throwError(err);
+});
+
+// Agregar esta función para validar el formulario
+function validateForm() {
+  if (document.querySelector('#loginForm')) {
+    const loginName = document.getElementById("loginName").value.trim();
+    const loginPass = document.getElementById("loginPass").value.trim();
+    const submitButton = document.getElementById("loginBtn");
+    submitButton.disabled = !(loginName && loginPass && loginPass.length >= 5);
+  }
+
+  if (document.querySelector('#registerForm')) {
+    const registerName = document.getElementById("registerName").value.trim();
+    const registerEmail = document.getElementById("registerEmail").value.trim();
+    const registerPass = document.getElementById("registerPass").value.trim();
+    const registerPass2 = document.getElementById("registerPass2").value.trim();
+    const submitButton = document.getElementById("registerBtn");
+
+    const isValidEmail = registerEmail.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    const isValidPassword = registerPass.length >= 5 && registerPass === registerPass2;
+
+    submitButton.disabled = !(registerName && isValidEmail && isValidPassword);
+  }
+}
+
+// Agregar los event listeners para los inputs
+if (document.querySelector('#loginForm')) {
+  document.getElementById("loginName").addEventListener("input", validateForm);
+  document.getElementById("loginPass").addEventListener("input", validateForm);
+}
+
+if (document.querySelector('#registerForm')) {
+  document.getElementById("registerName").addEventListener('input', validateForm)
+  document.getElementById("registerEmail").addEventListener('input', validateForm)
+  document.getElementById("registerPass").addEventListener('input', validateForm)
+  document.getElementById("registerPass2").addEventListener('input', validateForm)
+}
+
+// Inicializar el estado del botón cuando carga la página
+document.addEventListener("DOMContentLoaded", () => {
+  validateForm();
 });

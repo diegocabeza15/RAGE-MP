@@ -2,6 +2,9 @@ var creatorBrowser;
 let creatorCam;
 
 mp.events.add('client:startCharacterCreator', () => {
+    // Agregar log para verificar que el evento se dispara
+    mp.console.logInfo("Iniciando creador de personaje");
+
     // Configuración de la cámara
     mp.game.cam.renderScriptCams(false, false, 0, false, false);
     creatorCam = mp.cameras.new('creatorCam',
@@ -21,7 +24,16 @@ mp.events.add('client:startCharacterCreator', () => {
 
     // Configuración de la UI
     mp.players.local.freezePosition(true);
-    creatorBrowser = mp.browsers.new('package://cef/character/index.html');
+    mp.players.local.setCollision(false, false);
+
+    // Asegurarnos que el navegador se crea correctamente
+    try {
+        creatorBrowser = mp.browsers.new('package://cef/character/index.html');
+        mp.console.logInfo("Navegador creado exitosamente");
+    } catch (error) {
+        mp.console.logError("Error al crear el navegador: " + error);
+    }
+
     mp.game.ui.setMinimapVisible(true);
     mp.gui.chat.activate(false);
     mp.gui.chat.show(false);

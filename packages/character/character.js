@@ -8,6 +8,8 @@ let creatorDimension = 1;
 var lastPosition, lastHeading, lastCameraPosition;
 // Start of Selection
 mp.events.addCommand('personalizar', (player) => {
+    console.log('=== INICIO CHARACTER ===');
+
     if (!player.getVariable('loggedIn')) {
         player.outputChatBox("Debes iniciar sesión para personalizar tu personaje.");
         return;
@@ -27,6 +29,10 @@ mp.events.addCommand('personalizar', (player) => {
     player.dimension = creatorDimension;
     player.heading = creatorPlayerHeading;
 
+
+    console.log(`Intentando personalizar a : \n ${JSON.stringify({ clothes: player.getClothes(), decorations: player.getDecoration(), face: player.getFaceFeature() }, null, 2)}`);
+
+    console.log('=== INICIO CHARACTER CLIENT ===');
     // Llamar al evento del cliente
     player.call('client:startCharacterCreator');
 });

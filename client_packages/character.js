@@ -2,10 +2,26 @@ var creatorBrowser;
 let creatorCam;
 
 mp.events.add('client:startCharacterCreator', () => {
-    // Mostrar alerta al ingresar al creador de personajes
-    mp.game.graphics.notify("~g~Ingresando al Creador de Personajes");
+    console.log('=== INICIO CHARACTER PANEL ===');
+    mp.console.logInfo('=== INICIO CHARACTER PANEL ===');
+    // Mostrar texto al ingresar al creador de personajes
+    let startTime = Date.now();
+    let duration = 5000; // 5 segundos de duración
+
+    mp.events.add('render', () => {
+        if (Date.now() - startTime < duration) {
+            mp.game.graphics.drawText("Creador de Personajes\nIngresando al Creador de Personajes", [0.5, 0.2], {
+                font: 4,
+                color: [0, 255, 0, 255],
+                scale: [0.6, 0.6],
+                outline: true,
+                centre: true
+            });
+        }
+    });
 
     // Configuración de la cámara
+    /*
     mp.game.cam.renderScriptCams(false, false, 0, false, false);
     creatorCam = mp.cameras.new('creatorCam',
         new mp.Vector3(mp.players.local.position.x,
@@ -21,9 +37,26 @@ mp.events.add('client:startCharacterCreator', () => {
         mp.players.local.position.z
     );
     mp.game.cam.renderScriptCams(true, false, 0, true, false);
+    */
 
-    // Mostrar alerta para indicar que presione E
-    mp.game.graphics.notify("~g~Presiona la tecla E para empezar");
+    console.log('=== SET VISUALIZATION ===');
+    mp.console.logInfo('=== SET VISUALIZATION ===');
+    freezePlayerPosition(true);
+    mp.game.ui.setMinimapVisible(true);
+    mp.gui.chat.activate(false);
+    mp.gui.chat.show(false);
+    setTimeout(() => { mp.gui.cursor.show(true, true); }, 500);
+    mp.game.ui.displayRadar(false);
+
+    console.log('=== MOSTRAR EL PANEL ===');
+    mp.console.logInfo('=== MOSTRAR EL PANEL ===');
+    // Asegurarnos que el navegador se crea correctamente
+    if (!creatorBrowser) {
+        creatorBrowser = mp.browsers.new('package://cef/character/index.html');
+        mp.console.logInfo("Navegador creado exitosamente");
+    } else {
+        mp.console.logError("Error al crear el navegador: " + error);
+    }
 
 
 });
@@ -40,6 +73,7 @@ mp.events.add('saveCharacter', () => {
         creatorBrowser = null;
     }
 
+    freezePlayerPosition(false);
     mp.game.ui.setMinimapVisible(false);
     mp.gui.chat.activate(true);
     mp.gui.chat.show(true);
@@ -53,48 +87,5 @@ mp.events.add('saveCharacter', () => {
 function freezePlayerPosition(toggle) {
     let player = mp.players.local; // Reference to the local player
     player.freezePosition(toggle); // Freeze or unfreeze the player's position
-    mp.gui.chat.push("Your position " + (toggle ? "frozen" : "unfrozen") + ".");
+    mp.console.logInfo("Your position " + (toggle ? "frozen" : "unfrozen") + ".");
 }
-
-// Function to freeze the player's position by ID
-function freezePlayerPositionById(playerId, toggle) {
-    let player = mp.players.at(playerId); // Get the player by ID
-    if (player) { // Check if the player exists
-        player.freezePosition(toggle); // Freeze or unfreeze the player's position
-        mp.gui.chat.push("Player ID " + playerId + " position " + (toggle ? "frozen" : "unfrozen") + ".");
-    } else {
-        mp.gui.chat.push("Player with ID " + playerId + " not found.");
-    }
-}
-
-// Bind the function to the "E" key (freeze/unfreeze self)
-mp.keys.bind(69, false, function () { // 69 is the key code for "E"
-    let player = mp.players.local; // Reference to the local player
-    let isFrozen = player.isPositionFrozen; // Check if the player's position is currently frozen
-    freezePlayerPosition(!isFrozen); // Toggle freeze state
-    // Asegurarnos que el navegador se crea correctamente
-    try {
-        creatorBrowser = mp.browsers.new('package://cef/character/index.html');
-        mp.console.logInfo("Navegador creado exitosamente");
-    } catch (error) {
-        mp.console.logError("Error al crear el navegador: " + error);
-    }
-
-    mp.game.ui.setMinimapVisible(true);
-    mp.gui.chat.activate(false);
-    mp.gui.chat.show(false);
-    setTimeout(() => { mp.gui.cursor.show(true, true); }, 500);
-    mp.game.ui.displayRadar(false);
-});
-
-// Bind the function to the "X" key (freeze/unfreeze player by ID)
-mp.keys.bind(88, false, function () { // 88 is the key code for "X"
-    let playerId = 0; // Set the player ID to 0 (you can change this to any ID)
-    let player = mp.players.at(playerId); // Get the player by ID
-    if (player) { // Check if the player exists
-        let isFrozen = player.isPositionFrozen; // Check if the player's position is currently frozen
-        freezePlayerPositionById(playerId, !isFrozen); // Toggle freeze state
-    } else {
-        mp.gui.chat.push("Player with ID " + playerId + " not found.");
-    }
-});

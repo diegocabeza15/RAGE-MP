@@ -9,27 +9,21 @@ var lastPosition, lastHeading, lastCameraPosition;
 // Start of Selection
 mp.events.addCommand('personalizar', (player) => {
     if (!player.getVariable('loggedIn')) {
-        player.outputChatBox("Debes iniciar sesión para personalizar tu personaje."); // Mensaje de advertencia
-        return process.exit(0);// Salir si el jugador no está logueado
+        player.outputChatBox("Debes iniciar sesión para personalizar tu personaje.");
+        return process.exit(0);
     }
 
-    // Guardar la posición actual del jugador antes de teletransportarlo
+    // Guardar la posición actual del jugador
     lastPosition = player.position;
     lastHeading = player.heading;
 
-    player.freezePosition(true); // Congela al jugador
-    player.position = creatorPlayerPos; // Teletransporta al jugador a las coordenadas del creador
-    player.dimension = creatorDimension; // Asigna una dimensión diferente al jugador
+    player.position = creatorPlayerPos;
+    player.dimension = creatorDimension;
     player.heading = creatorPlayerHeading;
-    // Desactivar cualquier cámara activa en el juego
-    mp.game.cam.renderScriptCams(false, false, 0, false, false); // Desactivar cámaras existentes
-    // Crear una nueva cámara
-    const creatorCam = mp.cameras.new('creatorCam', new mp.Vector3(player.position.x, player.position.y, player.position.z + 3.0), new mp.Vector3(0, 0, 0), 40); // Alejar la cámara
-    creatorCam.setActive(true); // Activar la cámara
-    creatorCam.pointAtCoord(player.position.x, player.position.y, player.position.z); // Hacer que la cámara mire al jugador
-    mp.game.cam.renderScriptCams(true, false, 0, true, false); // Renderizar la cámara
-    player.call('client:openCreatorUI', [player, mp.character])
-})
+
+    // Llamar al evento del cliente
+    player.call('client:startCharacterCreator');
+});
 
 mp.events.add('server:saveCharacter', async (player) => {
 

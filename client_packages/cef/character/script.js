@@ -1,11 +1,3 @@
-function showCharacterPanel(charData) {
-    try {
-        console.log('Recibiendo datos:', charData);
-        document.getElementById('character-creator').style.display = 'block';
-    } catch (error) {
-        console.error('Error en showCharacterPanel:', error);
-    }
-}
 
 function hideCharacterPanel() {
     document.getElementById('character-creator').style.display = 'none';

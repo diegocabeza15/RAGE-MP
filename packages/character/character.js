@@ -16,15 +16,7 @@ mp.events.addCommand('personalizar', (player) => {
     // Guardar la posición actual del jugador antes de teletransportarlo
     lastPosition = player.position;
     lastHeading = player.heading;
-    // Guardar la posición de la cámara activa
-    const currentCam = mp.cameras.getActive();
-    if (currentCam) {
-        lastCameraPosition = {
-            position: currentCam.getCoord(),
-            rotation: currentCam.getRot(2),
-            pointCoord: currentCam.getPointingAtCoord()
-        };
-    }
+
     player.freezePosition(true); // Congela al jugador
     player.position = creatorPlayerPos; // Teletransporta al jugador a las coordenadas del creador
     player.dimension = creatorDimension; // Asigna una dimensión diferente al jugador
@@ -51,12 +43,4 @@ mp.events.add('server:saveCharacter', async (player) => {
 
     // Desactivar la cámara del creador
     mp.game.cam.renderScriptCams(false, false, 0, false, false);
-
-    // Si teníamos una posición de cámara guardada, la restauramos
-    if (lastCameraPosition) {
-        const returnCam = mp.cameras.new('default', lastCameraPosition.position, lastCameraPosition.rotation, 40);
-        returnCam.setActive(true);
-        returnCam.pointAtCoord(lastCameraPosition.pointCoord.x, lastCameraPosition.pointCoord.y, lastCameraPosition.pointCoord.z);
-        mp.game.cam.renderScriptCams(true, false, 0, true, false);
-    }
 });

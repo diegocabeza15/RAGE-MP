@@ -22,6 +22,7 @@ body {
   flex-direction: column;
   font-family: "Kanit";
   position: relative;
+  overflow: hidden;
 }
 
 body.overlay::before {
@@ -255,11 +256,20 @@ a:hover {
 #detail2 {
   position: absolute;
   z-index: 19;
-  top: 15%;
-  transform: translateY(-44px);
+  top: -78px;
 }
 
 #detail2 > img {
+  width: 150px;
+}
+
+#details3 {
+  position: absolute;
+  z-index: 9;
+  bottom: 47px;
+}
+
+#details3 > img {
   width: 150px;
 }
 

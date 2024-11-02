@@ -5,21 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="login.css" rel="stylesheet" />
     <script src="main.js" defer></script>
+    <script src="loginPage.js" defer></script>
   </head>
   <body>
-    <span id="detail1">
-        <img src="assets/1.webp" alt="detail">
-    </span>
-    <span id="detail2">
-        <img src="assets/2.webp" alt="detail">
-    </span>
     <span id="detail3">
-        <img src="assets/3.webp" alt="detail">
-    </span>
-    <span id="detail4">
-        <img src="assets/4.webp" alt="">
+      <img src="assets/3.webp" alt="detail">
     </span>
     <article class="card-body">
+      <span id="detail2">
+          <img src="assets/2.webp" alt="detail">
+      </span>
       <h1 class="text-center">Server DIEGO CABEZA</h1>
       <form>
         <fieldset class="alert alert-danger" role="alert"></fieldset>
@@ -57,8 +52,9 @@
         </span>
         </fieldset>
 
-        <button type="submit" id="loginBtn" onclick="sendAccountInfo(0);">
-          Iniciar<span></span>
+        <button type="submit" id="loginBtn" onclick="sendAccountInfo(0);" disabled >
+          <span class="loader" style="display: none;"></span>
+          <b id="text-button">Iniciar</b><span id="styleButton"></span>
         </button>
         <small
           >¿No estás registrado?

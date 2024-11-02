@@ -6,27 +6,6 @@ const errorMsg = {
   tooshort: "The username or password you have provided is too short",
   incorrectinfo: "The username or password you have entered is incorrect.",
 };
-
-const closedEye = document.querySelector("#closedEye");
-const openedEye = document.querySelector("#openedEye");
-const passwordLogin = document.querySelector("#loginPass");
-
-closedEye.addEventListener("click", () => {
-  closedEye.classList.toggle("active");
-  closedEye.classList.toggle("unActive");
-  openedEye.classList.toggle("active");
-  openedEye.classList.toggle("unActive");
-  passwordLogin.setAttribute("type", "text");
-});
-
-openedEye.addEventListener("click", () => {
-  closedEye.classList.toggle("active");
-  closedEye.classList.toggle("unActive");
-  openedEye.classList.toggle("active");
-  openedEye.classList.toggle("unActive");
-  passwordLogin.setAttribute("type", "password");
-});
-
 document
   .querySelectorAll(".alert")
   .forEach((alert) => (alert.style.display = "none"));
@@ -61,12 +40,16 @@ function sendAccountInfo(state) {
       } else {
         throwError("password-mismatch");
       }
+      if (document.querySelector("#registerPass").value < 5) {
+        document.querySelector("#smallError").classList.toggle("unActive");
+        document.querySelector("#smallError").classList.toggle("active");
+        break;
+      }
       break;
     default:
       break;
   }
 }
-
 function throwError(err) {
   document.querySelectorAll(".alert").forEach((alert) => {
     alert.style.display = "block";

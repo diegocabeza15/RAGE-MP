@@ -28,12 +28,10 @@ mp.events.addCommand('personalizar', (player) => {
     creatorCam.setActive(true); // Activar la cámara
     creatorCam.pointAtCoord(player.position.x, player.position.y, player.position.z); // Hacer que la cámara mire al jugador
     mp.game.cam.renderScriptCams(true, false, 0, true, false); // Renderizar la cámara
-    player.call('client:openCreatorUI', mp.character)
+    player.call('client:openCreatorUI', [player, mp.character])
 })
 
 mp.events.add('server:saveCharacter', async (player) => {
-    // Descongelar al jugador
-    player.freezePosition(false);
 
     // Si existe una posición anterior guardada, teletransportar al jugador allí
     if (lastPosition) {

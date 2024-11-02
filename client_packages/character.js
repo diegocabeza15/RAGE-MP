@@ -1,5 +1,6 @@
 var creatorBrowser;
 mp.events.add('client:openCreatorUI', () => {
+    mp.players.local.freezePosition(true);
     creatorBrowser = mp.browsers.new('package://cef/character/index.html');
     mp.game.ui.setMinimapVisible(true);
     mp.gui.chat.activate(false);

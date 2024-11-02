@@ -17,14 +17,13 @@ mp.events.addCommand('personalizar', (player) => {
     lastPosition = player.position;
     lastHeading = player.heading;
     // Guardar la posición de la cámara activa
-    const currentCam = mp.cameras.new('default');
-    if (currentCam && currentCam.isActive()) {
+    const currentCam = mp.cameras.getActive();
+    if (currentCam) {
         lastCameraPosition = {
             position: currentCam.getCoord(),
             rotation: currentCam.getRot(2),
             pointCoord: currentCam.getPointingAtCoord()
         };
-        currentCam.destroy();
     }
     player.freezePosition(true); // Congela al jugador
     player.position = creatorPlayerPos; // Teletransporta al jugador a las coordenadas del creador

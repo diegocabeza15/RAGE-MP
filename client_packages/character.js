@@ -1,6 +1,14 @@
 var creatorBrowser;
 let creatorCam;
 
+// Function to freeze the player's position
+function freezePlayerPosition(toggle) {
+    let player = mp.players.local; // Reference to the local player
+    player.freezePosition(toggle); // Freeze or unfreeze the player's position
+    mp.console.logInfo("Your position " + (toggle ? "frozen" : "unfrozen") + ".");
+}
+
+
 mp.events.add('client:startCharacterCreator', () => {
     console.log('=== INICIO CHARACTER PANEL ===');
     mp.console.logInfo('=== INICIO CHARACTER PANEL ===');
@@ -83,9 +91,4 @@ mp.events.add('saveCharacter', () => {
 });
 
 
-// Function to freeze the player's position
-function freezePlayerPosition(toggle) {
-    let player = mp.players.local; // Reference to the local player
-    player.freezePosition(toggle); // Freeze or unfreeze the player's position
-    mp.console.logInfo("Your position " + (toggle ? "frozen" : "unfrozen") + ".");
-}
+

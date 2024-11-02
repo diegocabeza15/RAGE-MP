@@ -1,86 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="register.css" rel="stylesheet" />
-    <script src="main.js" defer></script>
-    <script src="register.js" defer></script>
-  </head>
-  <body>
-    <span id="details3">
-      <img src="assets/3.webp" alt="detail">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="register.css" rel="stylesheet" />
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+  <span id="details3">
+    <img src="assets/3.webp" alt="detail">
+  </span>
+  <article>
+    <span id="detail2">
+      <img src="assets/2.webp" alt="detail">
     </span>
-    <article>
-      <span id="detail2">
-          <img src="assets/2.webp" alt="detail">
-      </span>
-      <h1>Server Diego Cabeza</h1>
-      <form>
-        <fieldset class="alert alert-danger" role="alert"></fieldset>
-        <fieldset class="form-group">
-          <label>Usuario</label>
-          <input
-            type="text"
-            name="username"
-            id="registerName"
-            min="3"
-            class="form-control"
-            placeholder="Nombre de Usuario..."
-            required
-          />
-        </fieldset>
-        <fieldset class="form-group">
-          <label>Correo</label>
-          <input
-            type="email"
-            name="email"
-            id="registerEmail"
-            class="form-control"
-            placeholder="Ingresa tu Correo..."
-            required
-          />
-        </fieldset>
-        <fieldset class="form-group">
-          <label>Contraseña</label>
-          <input
-            type="password"
-            name="password"
-            id="registerPass"
-            min="5"
-            class="form-control"
-            placeholder="Ingresa una Contraseña..."
-            required
-          />
-          <span id="closedEye" class="active eye">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-closed"><path d="m15 18-.722-3.25"/><path d="M2 8a10.645 10.645 0 0 0 20 0"/><path d="m20 15-1.726-2.05"/><path d="m4 15 1.726-2.05"/><path d="m9 18 .722-3.25"/></svg>
-          </span>
-          <span id="openedEye" class="unActive eye">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
-        </span>
-        </fieldset>
-        <fieldset class="form-group">
-          <label>Repetir Contraseña</label>
-          <input
-            type="password"
-            name="password"
-            id="registerPass2"
-            min="5"
-            class="form-control"
-            placeholder="Repite la Contraseña..."
-            required
-          />
-        </fieldset>
-        <button
-          type="submit"
-          id="registerBtn"
-          onclick="sendAccountInfo(1);"
-        >
-          Registrar<span></span>
-        </button>
-        <small>¿Ya estás registrado?<a href="index.html">Go back</a></small>
-      </form>
-    </article>
-    <small id="smallError" class="form-text text-muted unActive">La contraseña debe tener como MINIMO 5 caracteres.</small>
-  </body>
+    <h1>Server Diego Cabeza</h1>
+    <form id="loginForm">
+
+      <fieldset class="form-group">
+        <label>Usuario</label>
+        <input type="text" name="username" id="registerName" min="3" class="form-control"
+          placeholder="Nombre de Usuario..." required />
+      </fieldset>
+      <fieldset class="form-group">
+        <label>Correo</label>
+        <input type="email" name="email" id="registerEmail" class="form-control" placeholder="Ingresa tu Correo..."
+          required />
+      </fieldset>
+      <fieldset class="form-group">
+        <label>Contraseña</label>
+        <input type="password" name="password" id="registerPass" min="5" class="form-control"
+          placeholder="Ingresa una Contraseña..." required />
+      </fieldset>
+      <fieldset class="form-group">
+        <label>Repetir Contraseña</label>
+        <input type="password" name="password" id="registerPass2" min="5" class="form-control"
+          placeholder="Repite la Contraseña..." required />
+      </fieldset>
+      <button type="submit" id="registerBtn" onclick="sendAccountInfo(1);">
+        Registrar<span></span>
+      </button>
+      <small>¿Ya estás registrado?<a href="index.html">Go back</a></small>
+    </form>
+  </article>
+  <p class="alert"></p>
+</body>
+
 </html>

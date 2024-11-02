@@ -13,7 +13,6 @@ html {
 }
 
 body {
-  background-color: rgba(0, 0, 0, 0);
   display: flex;
   width: 100%;
   height: 100vh;
@@ -23,6 +22,11 @@ body {
   font-family: "Kanit";
   position: relative;
   overflow: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("assets/bgc.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 body.overlay::before {
@@ -243,14 +247,20 @@ a:hover {
   transition: all 200ms ease-in-out;
 }
 
-.form-text {
-  position: absolute;
+.alert {
+  position: fixed;
+  right: 5%;
   bottom: 10%;
-  color: red;
+  background-color: crimson;
+  color: snow;
   font-weight: bold;
   font-size: 1.25rem;
-  text-shadow: black 1px 1px 2px;
   letter-spacing: 1px;
+  z-index: 900;
+  display: block;
+  width: 25%;
+  padding: 1rem 2rem;
+  min-height: 3rem;
 }
 
 #detail2 {
@@ -273,22 +283,24 @@ a:hover {
   width: 150px;
 }
 
-.eye {
+#btnEye {
   position: absolute;
   right: -37px;
   cursor: pointer;
   transition: all 200ms ease-in-out;
+  background-color: transparent;
+  display: flex;
+  padding: 0.25rem;
+  justify-content: center;
+  align-items: center;
 }
 
-.eye:hover {
+#btnEye svg {
+  width: auto;
+  height: 2rem;
+}
+
+#btnEye:hover {
   transform: scale(1.05);
   transition: all 200ms ease-in-out;
-}
-
-.unActive {
-  display: none;
-}
-
-.active {
-  display: flex;
 }

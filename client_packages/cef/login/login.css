@@ -10,6 +10,10 @@ html {
   user-select: none;
   cursor: default;
   background-color: rgba(0, 0, 0, 0);
+  background-image: url("assets/bgc.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 body {
@@ -212,7 +216,7 @@ button:hover #text-button {
 form > small {
   display: flex;
   flex-direction: column;
-  gap: .35rem;
+  gap: 0.35rem;
   justify-content: center;
   align-items: center;
 }
@@ -252,24 +256,29 @@ a:hover {
   transition: all 200ms ease-in-out;
 }
 
-.eye {
+#btnEye {
   position: absolute;
   right: -37px;
   cursor: pointer;
   transition: all 200ms ease-in-out;
+  background-color: transparent;
+  display: flex;
+  padding: 0.25rem;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
 }
 
-.eye:hover {
+#btnEye svg {
+  width: auto;
+  height: 2rem;
+  stroke: rgb(174, 0, 255);
+}
+
+#btnEye:hover {
   transform: scale(1.05);
   transition: all 200ms ease-in-out;
-}
-
-.unActive {
-  display: none;
-}
-
-.active {
-  display: flex;
 }
 
 #detail2 {
@@ -309,8 +318,26 @@ a:hover {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-
+.alert {
+  position: fixed;
+  right: 5%;
+  bottom: 10%;
+  background-color: crimson;
+  color: snow;
+  font-weight: bold;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  z-index: 900;
+  display: block;
+  width: 25%;
+  padding: 1rem 2rem;
+  min-height: 3rem;
+}

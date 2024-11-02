@@ -163,6 +163,11 @@ form > button {
   border: 2px solid transparent;
 }
 
+form > button:disabled {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: gray;
+}
+
 button > span {
   border-radius: 5px;
   position: absolute;
@@ -188,14 +193,17 @@ span::before {
   transform: translate(-50%, -50%) rotate(-60deg);
   transition: all 0.3s;
 }
+form > button:disabled span {
+  display: none;
+}
 
-button:hover span::before {
+form > button:not(:disabled):hover span::before {
   transform: translate(-50%, -50%) rotate(-90deg);
   width: 100%;
   background: rgba(195, 0, 255, 0.514);
 }
 
-button:hover {
+form > button:not(:disabled):hover {
   transform: scale(1.05);
   transition: all 200ms ease-in-out;
   color: snow;

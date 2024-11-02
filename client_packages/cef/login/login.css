@@ -156,6 +156,12 @@ form > button {
   border-radius: 5px;
   border: 2px solid transparent;
 }
+form > button:disabled {
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+  pointer-events: none;
+  border: none;
+}
 
 #text-button {
   letter-spacing: 1px;
@@ -194,23 +200,31 @@ form > button {
   transition: all 0.3s;
 }
 
-button:hover #styleButton::before {
+form > button:not(:disabled):hover #styleButton::before {
   transform: translate(-50%, -50%) rotate(-90deg);
   width: 100%;
   background: rgba(195, 0, 255, 0.514);
 }
 
-button:hover {
+form > button:not(:disabled):hover {
   transform: scale(1.05);
   transition: all 200ms ease-in-out;
   border: 2px solid rgb(0, 0, 0);
 }
 
-button:hover #text-button {
+form > button:not(:disabled):hover #text-button {
   letter-spacing: 3px;
   color: snow;
   transition: all 200ms ease-in-out;
   text-shadow: 1px 1px 2px black;
+}
+
+form > button:disabled #styleButton {
+  display: none;
+}
+
+form > button:disabled #text-button {
+  color: gray;
 }
 
 form > small {

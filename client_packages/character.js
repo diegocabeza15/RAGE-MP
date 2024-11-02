@@ -2,8 +2,8 @@ var creatorBrowser;
 let creatorCam;
 
 mp.events.add('client:startCharacterCreator', () => {
-    // Agregar log para verificar que el evento se dispara
-    mp.gui.chat.push("Ingresando al Creador de Personajes.");
+    // Mostrar alerta al ingresar al creador de personajes
+    mp.game.graphics.notify("~g~Ingresando al Creador de Personajes");
 
     // Configuración de la cámara
     mp.game.cam.renderScriptCams(false, false, 0, false, false);
@@ -22,8 +22,8 @@ mp.events.add('client:startCharacterCreator', () => {
     );
     mp.game.cam.renderScriptCams(true, false, 0, true, false);
 
-    // Agregar log para verificar que el evento se dispara
-    mp.gui.chat.push("Preciona la tecla E para empazar .");
+    // Mostrar alerta para indicar que presione E
+    mp.game.graphics.notify("~g~Presiona la tecla E para empezar");
 
 
 });

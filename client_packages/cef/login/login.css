@@ -154,6 +154,7 @@ form > button {
   transition: all 200ms ease-in-out;
   z-index: 331;
   border-radius: 5px;
+  pointer-events: all;
   border: 2px solid transparent;
 }
 form > button:disabled {

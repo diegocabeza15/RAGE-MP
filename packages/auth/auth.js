@@ -29,6 +29,10 @@ mp.events.add('server:registerAccount', async (player, username, email, password
 //  Called when a user wants to login to an account
 //  NOTE: This event doesn't load the data onto the account, use server:loadAccount
 mp.events.add('server:loginAccount', async (player, username, password) => {
+
+    console.log('=== INICIO LOGIN ===');
+    console.log(`Intentando registrar: ${username}, ${password}`);
+
     //  Loop through players array to find any matching usernames currently logged in
     let loggedAccount = mp.players.toArray().find(p => p.getVariable('username') === username);
     if (loggedAccount) return player.call('client:loginHandler', ['logged']);
@@ -36,6 +40,7 @@ mp.events.add('server:loginAccount', async (player, username, password) => {
     try {
         //  Returns true/false if the login was successful or not
         const res = await attemptLogin(username, password);
+        console.log(`Respuesta del login: ${res}`);
         res ? successLoginHandle(player, 'success', username) : failedLoginHandle(player, 'incorrectinfo');
     } catch (e) { errorHandler(e) };
 });
@@ -136,7 +141,7 @@ async function attemptRegister(player, username, email, pass) {
 //  Runs when attempting to login to an account
 async function attemptLogin(username, password) {
     try {
-        console.log('=== INICIO LOGIN ===');
+        console.log('=== Buscando en la DB ===');
         console.log(`Intentando login: ${username}`);
         const { rows } = await mp.db.query(
             'SELECT username, password FROM accounts WHERE username = $1',
@@ -146,6 +151,7 @@ async function attemptLogin(username, password) {
         //  If no account found, return false
         if (rows.length === 0) return false;
 
+        console.log(`Usuario encontrado:\n${JSON.stringify(rows[0], null, 2)}`);
         //  Returns true/false if the password matches
         const res = await bcrypt.compare(password, rows[0].password);
 

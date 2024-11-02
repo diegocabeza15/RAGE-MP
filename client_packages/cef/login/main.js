@@ -106,13 +106,12 @@ function sendAccountInfo(state) {
       const loginName = document.getElementById("loginName").value;
       const loginPass = document.getElementById("loginPass").value;
 
-
       if (!loginName || !loginPass) {
         throwError("invalid-info");
         return;
       }
 
-      if (registerPass.length < 5) {
+      if (loginPass.length < 5) {
         throwError("password-length");
         return;
       }

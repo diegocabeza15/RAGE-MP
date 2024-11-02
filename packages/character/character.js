@@ -10,7 +10,13 @@ var lastPosition, lastHeading, lastCameraPosition;
 mp.events.addCommand('personalizar', (player) => {
     if (!player.getVariable('loggedIn')) {
         player.outputChatBox("Debes iniciar sesión para personalizar tu personaje.");
-        return process.exit(0);
+        return;
+    }
+
+    // Verificar si el jugador tiene una skin de freemode
+    if (!freemodeCharacters.includes(player.model)) {
+        player.outputChatBox("Solo puedes personalizar personajes freemode.");
+        return;
     }
 
     // Guardar la posición actual del jugador

@@ -2,7 +2,7 @@ let customizationBrowser = null;
 
 mp.events.add("client:showCustomizationPanel", () => {
     if (!customizationBrowser) {
-        customizationBrowser = mp.browsers.new("package://client_packages/cef/chatacter/index.html");
+        customizationBrowser = mp.browsers.new("package://client_packages/cef/character/index.html");
     }
     mp.gui.cursor.show(true, true);
 });

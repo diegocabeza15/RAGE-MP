@@ -29,22 +29,15 @@ mp.events.addCommand('personalizar', (player) => {
     player.dimension = creatorDimension;
     player.heading = creatorPlayerHeading;
 
-
- //   console.log(`Intentando personalizar a : \n ${JSON.stringify({ clothes: player.getClothes(), decorations: player.getDecoration(), face: player.getFaceFeature() }, null, 2)}`);
-
     console.log('=== INICIO CHARACTER CLIENT ===');
     // Llamar al evento del cliente
-    mp.events.call('client:startCharacterCreator');
+    player.call("client:showCustomizationPanel");
 });
 
-mp.events.add('server:saveCharacter', async (player) => {
 
-    // Si existe una posición anterior guardada, teletransportar al jugador allí
-    if (lastPosition) {
-        player.position = lastPosition;
-        player.dimension = 0; // Volver a la dimensión normal
-    }
+mp.events.add("server:saveCustomization", (player, data) => {
+    // Lógica para aplicar los cambios en el personaje del jugador
 
-    // Desactivar la cámara del creador
-    mp.game.cam.renderScriptCams(false, false, 0, false, false);
+    // Aquí también podrías guardar los cambios en la base de datos si es necesario
+    player.call("client:hideCustomizationPanel");
 });

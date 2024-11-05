@@ -31,7 +31,7 @@ mp.events.addCommand('personalizar', (player) => {
 
     console.log('=== INICIO CHARACTER CLIENT ===');
     // Llamar al evento del cliente
-    setTimeout(() => player.call("client:showCustomizationPanel"), 180000)
+    player.call("client:showCustomizationPanel")
 });
 
 

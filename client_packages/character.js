@@ -1,6 +1,7 @@
 let customizationBrowser, customizationCamera = null;
 
 mp.events.add("client:showCustomizationPanel", () => {
+    mp.gui.cursor.show(true, true);
     // Posición y ángulo de la cámara para ver al personaje completo
     const playerPosition = mp.players.local.position;
     const cameraDistance = 3.0; // Distancia de la cámara hacia atrás para ver al personaje completo
@@ -17,11 +18,11 @@ mp.events.add("client:showCustomizationPanel", () => {
     customizationCamera.pointAtCoord(playerPosition.x, playerPosition.y, playerPosition.z + 0.5); // Apunta al centro del personaje
     customizationCamera.setActive(true);
     mp.game.cam.renderScriptCams(true, false, 0, true, false); // Activa la cámara
-
-    if (!customizationBrowser) {
-        customizationBrowser = mp.browsers.new("package://cef/character/index.html");
-    }
-    mp.gui.cursor.show(true, true);
+    setTimeout(() => {
+        if (!customizationBrowser) {
+            customizationBrowser = mp.browsers.new("package://cef/character/index.html");
+        }
+    }, 1000)
 });
 
 mp.events.add("client:hideCustomizationPanel", () => {

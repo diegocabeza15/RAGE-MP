@@ -3,11 +3,11 @@ function hideCharacterPanel() {
 }
 
 document.getElementById('save').addEventListener('click', () => {
-    mp.trigger('saveCharacter', JSON.stringify({}));
+    mp.trigger('client:saveCustomization', {});
 });
 
 document.getElementById('cancel').addEventListener('click', () => {
-    mp.trigger('saveCharacter', JSON.stringify({}));
+    mp.trigger('client:saveCustomization', {});
     hideCharacterPanel();
 });
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 document.querySelectorAll('#features details').forEach((detail) => {
-    detail.addEventListener('click', function() {
+    detail.addEventListener('click', function () {
         document.querySelectorAll('#features details').forEach((otherDetail) => {
             if (otherDetail !== detail && otherDetail.open) {
                 const accordion = new Accordion(otherDetail);
@@ -130,7 +130,7 @@ document.querySelectorAll('fieldset').forEach((fieldset) => {
 
     if (minusButton && plusButton && output) {
         minusButton.addEventListener('click', () => {
-            output.textContent = Math.max(0, parseInt(output.textContent) - 1); 
+            output.textContent = Math.max(0, parseInt(output.textContent) - 1);
             if (parseInt(output.textContent) === 0) {
                 minusButton.setAttribute('disabled', "");
             }

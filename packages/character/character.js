@@ -1,5 +1,6 @@
 const fs = require('fs');
-const saveDirectory = "CustomCharacters";
+const path = require('path'); // Para manejar rutas de archivos y carpetas
+const folder = path.join(__dirname, 'data');
 const freemodeCharacters = [mp.joaat("mp_m_freemode_01"), mp.joaat("mp_f_freemode_01")];
 const creatorPlayerPos = new mp.Vector3(402.8664, -996.4108, -99.00027);
 const creatorPlayerHeading = -185.0;
@@ -55,7 +56,16 @@ mp.events.add("server:saveCustomization", (player, data) => {
         id: player.id,
         customization: data
     };
-    fs.writeFile(`data/player_${player.id}_customization.json`, JSON.stringify(playerData, null, 2), (err) => {
+
+    // Ruta del archivo donde se guardarán los datos del jugador
+    const playerFile = path.join(folder, `player_${player.id}_customization.json`);
+
+    // Verificamos si la carpeta existe; si no, la creamos
+    if (!fs.existsSync(folder)) {
+        fs.mkdirSync(folder, { recursive: true });
+    }
+
+    fs.writeFile(playerFile, JSON.stringify(playerData, null, 2), (err) => {
         if (err) {
             console.error("Error al guardar la personalización:", err);
         } else {

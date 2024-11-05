@@ -54,7 +54,7 @@ mp.events.add("server:saveCustomization", (player, data) => {
     player.heading = lastHeading
     const playerData = {
         id: player.id,
-        customization: data
+        customization: custom
     };
 
     // Ruta del archivo donde se guardarán los datos del jugador

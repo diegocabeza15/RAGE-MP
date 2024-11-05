@@ -38,6 +38,7 @@ mp.events.addCommand('personalizar', (player) => {
 mp.events.add("server:saveCustomization", (player, data) => {
     // Lógica para aplicar los cambios en el personaje del jugador
     console.log('=== GUARDANDO CHARACTER SERVER ===');
+    console.log(data)
     const custom = JSON.parse(data);
     for (const prop in custom) {
         if (Object.prototype.hasOwnProperty.call(custom, prop)) {

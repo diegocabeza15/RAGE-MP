@@ -1,3 +1,4 @@
+const fs = require('fs');
 const saveDirectory = "CustomCharacters";
 const freemodeCharacters = [mp.joaat("mp_m_freemode_01"), mp.joaat("mp_f_freemode_01")];
 const creatorPlayerPos = new mp.Vector3(402.8664, -996.4108, -99.00027);
@@ -50,6 +51,17 @@ mp.events.add("server:saveCustomization", (player, data) => {
     player.position = lastPosition
     player.dimension = 0
     player.heading = lastHeading
+    const playerData = {
+        id: player.id,
+        customization: customizationData
+    };
+    fs.writeFile(`data/player_${player.id}_customization.json`, JSON.stringify(playerData, null, 2), (err) => {
+        if (err) {
+            console.error("Error al guardar la personalización:", err);
+        } else {
+            console.log("Datos de personalización guardados correctamente.");
+        }
+    });
     // Aquí también podrías guardar los cambios en la base de datos si es necesario
     player.call("client:hideCustomizationPanel");
 });

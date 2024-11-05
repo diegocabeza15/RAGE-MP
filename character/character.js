@@ -11,13 +11,13 @@ mp.events.addCommand('personalizar', (player) => {
     console.log('=== INICIO CHARACTER ===');
 
     if (!player.getVariable('loggedIn')) {
-        player.outputChatBox("Debes iniciar sesión para personalizar tu personaje.");
+        console.log("Debes iniciar sesión para personalizar tu personaje.");
         return;
     }
 
     // Verificar si el jugador tiene una skin de freemode
     if (!freemodeCharacters.includes(player.model)) {
-        player.outputChatBox("Solo puedes personalizar personajes freemode.");
+        console.log("Solo puedes personalizar personajes freemode.");
         return;
     }
 
@@ -30,11 +30,11 @@ mp.events.addCommand('personalizar', (player) => {
     player.heading = creatorPlayerHeading;
 
 
-    console.log(`Intentando personalizar a : \n ${JSON.stringify({ clothes: player.getClothes(), decorations: player.getDecoration(), face: player.getFaceFeature() }, null, 2)}`);
+ //   console.log(`Intentando personalizar a : \n ${JSON.stringify({ clothes: player.getClothes(), decorations: player.getDecoration(), face: player.getFaceFeature() }, null, 2)}`);
 
     console.log('=== INICIO CHARACTER CLIENT ===');
     // Llamar al evento del cliente
-    player.call('client:startCharacterCreator');
+    mp.events.call('client:startCharacterCreator');
 });
 
 mp.events.add('server:saveCharacter', async (player) => {

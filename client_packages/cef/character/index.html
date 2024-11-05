@@ -1,262 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Character Creator</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <main id="character-creator">
-        <h1>Character Creator</h1>
-        <ul class="tabs">
-            <li class="tab-button" onclick="openTab(event, 'physical')">Físicas</li>
-            <li class="tab-button" onclick="openTab(event, 'features')">Apariencia</li>
-            <li class="tab-button" onclick="openTab(event, 'clothing')">Vestimenta</li>
-        </ul>
-        <form id="characterForm">
-            <!-- Características Físicas -->
-            <section id="physical" class="tab-content">
-                <h2>Características Físicas</h2>
-                <label for="gender">Género:</label>
-                <select id="gender">
-                    <option value="0">Masculino</option>
-                    <option value="1">Femenino</option>
-                </select>
+      <h1>Creador de Personaje</h1>
+      <ul class="tabs">
+        <li class="tab-button" onclick="openTab(event, 'clothing')">
+          Vestimenta
+        </li>
+        <li class="tab-button" onclick="openTab(event, 'physical')">Físicas</li>
+          <li class="tab-button" onclick="openTab(event, 'features')">
+            Apariencia
+          </li>
+      </ul>
+      <form id="characterForm">
+        <!-- Características Físicas -->
+        <section id="physical" class="tab-content">
+          <h2>Características Físicas</h2>
+          <label for="gender">Género:</label>
+          <select id="gender">
+            <option value="0">Masculino</option>
+            <option value="1">Femenino</option>
+          </select>
 
-                <label for="father">Padre:</label>
-                <select id="father">
-                    <option value="0">Benjamin</option>
-                    <option value="1">Daniel</option>
-                    <option value="2">Joshua</option>
-                    <option value="3">Noah</option>
-                    <option value="4">Andrew</option>
-                    <option value="5">Juan</option>
-                    <option value="6">Alex</option>
-                    <option value="7">Isaac</option>
-                    <option value="8">Evan</option>
-                    <option value="9">Ethan</option>
-                    <option value="10">Vincent</option>
-                    <option value="11">Angel</option>
-                    <option value="12">Diego</option>
-                    <option value="13">Adrian</option>
-                    <option value="14">Gabriel</option>
-                    <option value="15">Michael</option>
-                    <option value="16">Santiago</option>
-                    <option value="17">Kevin</option>
-                    <option value="18">Louis</option>
-                    <option value="19">Samuel</option>
-                    <option value="20">Anthony</option>
-                    <option value="42">Claude</option>
-                    <option value="43">Niko</option>
-                    <option value="44">John</option>
-                </select>
+          <label for="father">Padre:</label>
+          <select id="father">
+            <option value="0">Benjamin</option>
+            <option value="1">Daniel</option>
+            <option value="2">Joshua</option>
+            <option value="3">Noah</option>
+            <option value="4">Andrew</option>
+            <option value="5">Juan</option>
+            <option value="6">Alex</option>
+            <option value="7">Isaac</option>
+            <option value="8">Evan</option>
+            <option value="9">Ethan</option>
+            <option value="10">Vincent</option>
+            <option value="11">Angel</option>
+            <option value="12">Diego</option>
+            <option value="13">Adrian</option>
+            <option value="14">Gabriel</option>
+            <option value="15">Michael</option>
+            <option value="16">Santiago</option>
+            <option value="17">Kevin</option>
+            <option value="18">Louis</option>
+            <option value="19">Samuel</option>
+            <option value="20">Anthony</option>
+            <option value="42">Claude</option>
+            <option value="43">Niko</option>
+            <option value="44">John</option>
+          </select>
+          <fieldset id="parecidosH">
+            <label for="parecidoFather">Parentezco al Padre</label>
+            <input type="range" name="father" id="parecidoFather" />
+          </fieldset>
+          <label for="mother">Madre:</label>
+          <select id="mother">
+            <option value="21">Hannah</option>
+            <option value="22">Aubrey</option>
+            <option value="23">Jasmine</option>
+            <option value="24">Gisele</option>
+            <option value="25">Amelia</option>
+            <option value="26">Isabella</option>
+            <option value="27">Zoe</option>
+            <option value="28">Ava</option>
+            <option value="29">Camila</option>
+            <option value="30">Violet</option>
+            <option value="31">Sophia</option>
+            <option value="32">Evelyn</option>
+            <option value="33">Nicole</option>
+            <option value="34">Ashley</option>
+            <option value="35">Gracie</option>
+            <option value="36">Brianna</option>
+            <option value="37">Natalie</option>
+            <option value="38">Olivia</option>
+            <option value="39">Elizabeth</option>
+            <option value="40">Charlotte</option>
+            <option value="41">Emma</option>
+            <option value="45">Misty</option>
+          </select>
+          <fieldset id="parecidosM">
+            <label for="parecidoMother">Parentezco a la Madre</label>
+            <input type="range" name="mother" id="parecidoMother" />
+          </fieldset>
 
-                <label for="mother">Madre:</label>
-                <select id="mother">
-                    <option value="21">Hannah</option>
-                    <option value="22">Aubrey</option>
-                    <option value="23">Jasmine</option>
-                    <option value="24">Gisele</option>
-                    <option value="25">Amelia</option>
-                    <option value="26">Isabella</option>
-                    <option value="27">Zoe</option>
-                    <option value="28">Ava</option>
-                    <option value="29">Camila</option>
-                    <option value="30">Violet</option>
-                    <option value="31">Sophia</option>
-                    <option value="32">Evelyn</option>
-                    <option value="33">Nicole</option>
-                    <option value="34">Ashley</option>
-                    <option value="35">Gracie</option>
-                    <option value="36">Brianna</option>
-                    <option value="37">Natalie</option>
-                    <option value="38">Olivia</option>
-                    <option value="39">Elizabeth</option>
-                    <option value="40">Charlotte</option>
-                    <option value="41">Emma</option>
-                    <option value="45">Misty</option>
-                </select>
-
-                <label for="eyeColor">Color de Ojos:</label>
-                <select id="eyeColor">
-                    <option value="0">Verde</option>
-                    <option value="1">Esmeralda</option>
-                    <option value="2">Azul Claro</option>
-                    <option value="3">Azul Océano</option>
-                    <option value="4">Marrón Claro</option>
-                    <option value="5">Marrón Oscuro</option>
-                    <option value="6">Avellana</option>
-                    <option value="7">Gris Oscuro</option>
-                    <option value="8">Gris Claro</option>
-                    <option value="9">Rosa</option>
-                    <option value="10">Amarillo</option>
-                    <option value="11">Púrpura</option>
-                    <option value="12">Negro Total</option>
-                    <option value="13">Tonos de Gris</option>
-                    <option value="14">Amanecer Tequila</option>
-                    <option value="15">Atómico</option>
-                    <option value="16">Deformación</option>
-                    <option value="17">ECola</option>
-                    <option value="18">Space Ranger</option>
-                    <option value="19">Ying Yang</option>
-                    <option value="20">Diana</option>
-                    <option value="21">Lagarto</option>
-                    <option value="22">Dragón</option>
-                    <option value="23">Extraterrestre</option>
-                    <option value="24">Cabra</option>
-                    <option value="25">Sonriente</option>
-                    <option value="26">Poseído</option>
-                    <option value="27">Demonio</option>
-                    <option value="28">Infectado</option>
-                    <option value="29">Alienígena</option>
-                    <option value="30">No-Muerto</option>
-                    <option value="31">Zombie</option>
-                </select>
-            </section>
-
-            <!-- Apariencia -->
-            <section id="features" class="tab-content" style="display:none;">
-                <h2>Aspecto facial</h2>
-                <fieldset>
-                    <label for="feature_0">Ancho de Nariz</label>
-                    <input type="range" id="feature_0" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_1">Altura Inferior de Nariz</label>
-                    <input type="range" id="feature_1" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_2">Longitud Punta de Nariz</label>
-                    <input type="range" id="feature_2" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_3">Profundidad Puente Nasal</label>
-                    <input type="range" id="feature_3" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_4">Altura Punta de Nariz</label>
-                    <input type="range" id="feature_4" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_5">Nariz Rota</label>
-                    <input type="range" id="feature_5" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_6">Altura de Cejas</label>
-                    <input type="range" id="feature_6" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_7">Profundidad de Cejas</label>
-                    <input type="range" id="feature_7" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_8">Altura de Pómulos</label>
-                    <input type="range" id="feature_8" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_9">Ancho de Pómulos</label>
-                    <input type="range" id="feature_9" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_10">Profundidad de Mejillas</label>
-                    <input type="range" id="feature_10" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_11">Tamaño de Ojos</label>
-                    <input type="range" id="feature_11" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_12">Grosor de Labios</label>
-                    <input type="range" id="feature_12" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_13">Ancho de Mandíbula</label>
-                    <input type="range" id="feature_13" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_14">Forma de Mandíbula</label>
-                    <input type="range" id="feature_14" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_15">Altura de Mentón</label>
-                    <input type="range" id="feature_15" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_16">Profundidad de Mentón</label>
-                    <input type="range" id="feature_16" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_17">Ancho de Mentón</label>
-                    <input type="range" id="feature_17" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_18">Hendidura del Mentón</label>
-                    <input type="range" id="feature_18" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-                <fieldset>
-                    <label for="feature_19">Ancho de Cuello</label>
-                    <input type="range" id="feature_19" min="-1" max="1" step="0.1" value="0">
-                </fieldset>
-            </section>
-
-            <!-- Vestimenta -->
-            <section id="clothing" class="tab-content" style="display:none;">
-                <h2>Vestimenta</h2>
-
-                <label for="tops">Tops:</label>
-                <select id="tops">
-                    <option value="0">Camiseta Básica</option>
-                    <option value="1">Camisa de Cuadros</option>
-                    <option value="2">Chaqueta de Cuero</option>
-                </select>
-
-                <label for="bottoms">Pantalones:</label>
-                <select id="bottoms">
-                    <option value="0">Jeans</option>
-                    <option value="1">Pantalones de Vestir</option>
-                    <option value="2">Shorts</option>
-                </select>
-
-                <label for="shoes">Zapatos:</label>
-                <select id="shoes">
-                    <option value="0">Zapatillas</option>
-                    <option value="1">Botas</option>
-                    <option value="2">Zapatos de Vestir</option>
-                </select>
-
-                <label for="hats">Sombreros:</label>
-                <select id="hats">
-                    <option value="0">Gorra</option>
-                    <option value="1">Sombrero de Vaquero</option>
-                    <option value="2">Boina</option>
-                </select>
-
-                <label for="glasses">Gafas:</label>
-                <select id="glasses">
-                    <option value="0">Gafas de Sol</option>
-                    <option value="1">Gafas de Lectura</option>
-                    <option value="2">Gafas de Aviador</option>
-                </select>
-
-                <label for="accessories">Accesorios:</label>
-                <select id="accessories">
-                    <option value="0">Reloj</option>
-                    <option value="1">Pulsera</option>
-                    <option value="2">Collar</option>
-                </select>
-            </section>
-
-            <div class="buttons">
-                <button id="save" type="button">Guardar</button>
-                <button id="cancel" type="button">Cancelar</button>
+          <label for="eyeColor">Color de Ojos:</label>
+          <select id="eyeColor">
+            <option value="0">Verde</option>
+            <option value="1">Esmeralda</option>
+            <option value="2">Azul Claro</option>
+            <option value="3">Azul Océano</option>
+            <option value="4">Marrón Claro</option>
+            <option value="5">Marrón Oscuro</option>
+            <option value="6">Avellana</option>
+            <option value="7">Gris Oscuro</option>
+            <option value="8">Gris Claro</option>
+            <option value="9">Rosa</option>
+            <option value="10">Amarillo</option>
+            <option value="11">Púrpura</option>
+            <option value="12">Negro Total</option>
+            <option value="13">Tonos de Gris</option>
+            <option value="14">Amanecer Tequila</option>
+            <option value="15">Atómico</option>
+            <option value="16">Deformación</option>
+            <option value="17">ECola</option>
+            <option value="18">Space Ranger</option>
+            <option value="19">Ying Yang</option>
+            <option value="20">Diana</option>
+            <option value="21">Lagarto</option>
+            <option value="22">Dragón</option>
+            <option value="23">Extraterrestre</option>
+            <option value="24">Cabra</option>
+            <option value="25">Sonriente</option>
+            <option value="26">Poseído</option>
+            <option value="27">Demonio</option>
+            <option value="28">Infectado</option>
+            <option value="29">Alienígena</option>
+            <option value="30">No-Muerto</option>
+            <option value="31">Zombie</option>
+          </select>
+        </section>
+        <section id="features" class="tab-content" style="display: none">
+          <h2>Aspecto facial</h2>
+          <details>
+            <summary>Apariencia de Nariz</summary>
+            <div class="details-content">
+              <fieldset>
+                <label for="feature_0">Ancho de Nariz</label>
+                <input type="range" id="feature_0" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+              <fieldset>
+                <label for="feature_1">Altura Inferior de Nariz</label>
+                <input type="range" id="feature_1" min="-1" max="1" step="0.1" value="0">
+            </fieldset>
+            <fieldset>
+                <label for="feature_2">Longitud Punta de Nariz</label>
+                <input type="range" id="feature_2" min="-1" max="1" step="0.1" value="0">
+            </fieldset>
+            <fieldset>
+                <label for="feature_3">Profundidad Puente Nasal</label>
+                <input type="range" id="feature_3" min="-1" max="1" step="0.1" value="0">
+            </fieldset>
+            <fieldset>
+                <label for="feature_4">Altura Punta de Nariz</label>
+                <input type="range" id="feature_4" min="-1" max="1" step="0.1" value="0">
+            </fieldset>
+            <fieldset>
+                <label for="feature_5">Nariz Rota</label>
+                <input type="range" id="feature_5" min="-1" max="1" step="0.1" value="0">
+            </fieldset>
             </div>
-        </form>
-    </main>
-    <div id="error-message" style="color: red; display: none;"></div>
-    <script src="script.js"></script>
-</body>
+          </details>
+          <details>
+            <summary>Apariencia de Cejas</summary>
+            <div class="details-content">
+              <fieldset>
+                <label for="feature_6">Altura de Cejas</label>
+                <input type="range" id="feature_6" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+              <fieldset>
+                <label for="feature_7">Profundidad de Cejas</label>
+                <input type="range" id="feature_7" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+            </div>
+          </details>
+          <details>
+            <summary>Apariencia de Pómulos</summary>
+            <div class="details-content">
+              <fieldset>
+                <label for="feature_8">Altura de Pómulos</label>
+                <input type="range" id="feature_8" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+              <fieldset>
+                <label for="feature_9">Ancho de Pómulos</label>
+                <input type="range" id="feature_9" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+              <fieldset>
+                <label for="feature_10">Profundidad de Mejillas</label>
+                <input type="range" id="feature_10" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+            </div>
+          </details>
+          <details>
+            <summary>Apariencia de Ojos</summary>
+            <div class="details-content">
+              <fieldset>
+                <label for="feature_11">Tamaño de Ojos</label>
+                <input type="range" id="feature_11" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+            </div>
+          </details>
+          <details>
+            <summary>Apariencia de Labios</summary>
+            <div class="details-content">
+              <fieldset>
+                <label for="feature_12">Grosor de Labios</label>
+                <input type="range" id="feature_12" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+            </div>
+          </details>
+          <details>
+            <summary>Apariencia de Mandíbula</summary>
+            <div class="details-content">
+              <fieldset>
+                <label for="feature_13">Ancho de Mandíbula</label>
+                <input type="range" id="feature_13" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+              <fieldset>
+                <label for="feature_14">Forma de Mandíbula</label>
+                <input type="range" id="feature_14" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+              <fieldset>
+                <label for="feature_15">Altura de Mentón</label>
+                <input type="range" id="feature_15" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+              <fieldset>
+                <label for="feature_16">Profundidad de Mentón</label>
+                <input type="range" id="feature_16" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+              <fieldset>
+                <label for="feature_17">Ancho de Mentón</label>
+                <input type="range" id="feature_17" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+              <fieldset>
+                <label for="feature_18">Hendidura del Mentón</label>
+                <input type="range" id="feature_18" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+            </div>
+          </details>
+          <details>
+            <summary>Apariencia de Cuello</summary>
+            <div class="details-content">
+              <fieldset>
+                <label for="feature_19">Ancho de Cuello</label>
+                <input type="range" id="feature_19" min="-1" max="1" step="0.1" value="0" />
+              </fieldset>
+            </div>
+          </details>
+        </section>
 
+        <!-- Vestimenta -->
+        <section id="clothing" class="tab-content" style="display: none">
+          <h2>Vestimenta</h2>
+
+          <fieldset>
+            <label for="tops">Tops</label>
+            <button type="button" id="topsMinus">
+              <img src="leftarrow.png" alt="">
+            </button>
+            <output id="tops">0</output>
+            <button type="button" id="topsPlus">
+              <img src="rightarrow.png" alt="">
+            </button>
+          </fieldset>
+          <fieldset>
+            <label for="bottoms">Pantalones</label>
+            <button type="button" id="bottomsMinus">
+              <img src="leftarrow.png" alt="">
+            </button>
+            <output id="bottoms">0</output>
+            <button type="button" id="bottomsPlus">
+              <img src="rightarrow.png" alt="">
+            </button>
+          </fieldset>
+          <fieldset>
+            <label for="shoes">Zapatos</label>
+            <button type="button" id="shoesMinus">
+              <img src="leftarrow.png" alt="">
+            </button>
+            <output id="shoes">0</output>
+            <button type="button" id="shoesPlus">
+              <img src="rightarrow.png" alt="">
+            </button>
+          </fieldset>
+          <fieldset>
+            <label for="hats">Sombreros</label>
+            <button type="button" id="hatsMinus">
+              <img src="leftarrow.png" alt="">
+            </button>
+            <output id="hats">0</output>
+            <button type="button" id="hatsPlus">
+              <img src="rightarrow.png" alt="">
+            </button>
+          </fieldset>
+          <fieldset>
+            <label for="glasses">Gafas</label>
+            <button type="button" id="glassesMinus">
+              <img src="leftarrow.png" alt="">
+            </button>
+            <output id="glasses">0</output>
+            <button type="button" id="glassesPlus">
+              <img src="rightarrow.png" alt="">
+            </button>
+          </fieldset>
+          <fieldset>
+            <label for="accessories">Accesorios</label>
+            <button type="button" id="accesoriesMinus">
+              <img src="leftarrow.png" alt="">
+            </button>
+            <output id="accesories">0</output>
+            <button type="button" id="accesoriesPlus">
+              <img src="rightarrow.png" alt="">
+            </button>
+          </fieldset>
+          </section>
+
+        <div class="buttons">
+          <button id="save" type="button">Guardar</button>
+          <button id="cancel" type="button">Cancelar</button>
+        </div>
+      </form>
+    </main>
+    <div id="error-message" style="color: red; display: none"></div>
+    <script src="script.js"></script>
+  </body>
 </html>

@@ -53,7 +53,7 @@ mp.events.add("server:saveCustomization", (player, data) => {
     player.heading = lastHeading
     const playerData = {
         id: player.id,
-        customization: customizationData
+        customization: data
     };
     fs.writeFile(`data/player_${player.id}_customization.json`, JSON.stringify(playerData, null, 2), (err) => {
         if (err) {

@@ -41,5 +41,7 @@ mp.events.add("client:hideCustomizationPanel", () => {
 
 // Recibe datos de personalización del navegador
 mp.events.add("client:saveCustomization", (data) => {
-    mp.events.callRemote("server:saveCustomization", JSON.stringify(data));
+    console.log('=== GUARDANDO CHARACTER ===');
+    console.log(data)
+    mp.events.callRemote("server:saveCustomization", data);
 });

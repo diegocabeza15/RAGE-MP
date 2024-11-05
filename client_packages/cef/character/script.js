@@ -3,7 +3,9 @@ function hideCharacterPanel() {
 }
 
 document.getElementById('save').addEventListener('click', () => {
-    mp.trigger('client:saveCustomization', {});
+    mp.trigger('client:saveCustomization', {
+        gender: document.getElementById('gender').value
+    });
 });
 
 document.getElementById('cancel').addEventListener('click', () => {

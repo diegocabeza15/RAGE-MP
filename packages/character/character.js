@@ -37,7 +37,18 @@ mp.events.addCommand('personalizar', (player) => {
 
 mp.events.add("server:saveCustomization", (player, data) => {
     // Lógica para aplicar los cambios en el personaje del jugador
-
+    console.log('=== GUARDANDO CHARACTER SERVER ===');
+    const custom = JSON.parse(data);
+    for (const prop in custom) {
+        if (Object.prototype.hasOwnProperty.call(custom, prop)) {
+            const value = custom[prop];
+            console.log(`-- Propiedad: ${prop} - ${value}.\n`)
+        }
+    }
+    // Reaparición del personaje
+    player.position = lastPosition
+    player.dimension = 0
+    player.heading = lastHeading
     // Aquí también podrías guardar los cambios en la base de datos si es necesario
     player.call("client:hideCustomizationPanel");
 });

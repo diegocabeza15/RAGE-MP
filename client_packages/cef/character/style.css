@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Outfit";
 }
 
 html {
@@ -12,10 +12,54 @@ html {
 }
 
 body {
-  font-family: "Outfit";
   background-color: rgba(0, 0, 0, 0);
   margin: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+#gender {
+  position: fixed;
+  display: flex;
+  gap: 1rem;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  top: 2rem;
+}
+#gender input[type="radio"] {
+  display: none;
+}
+#gender label {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: snow;
+  box-shadow: 0 0 0.25rem 0 rgba(0, 0, 0, 0.5);
+  transform: scale(1);
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+
+#gender label svg {
+  width: auto;
+  height: 100%;
+}
+
+#gender input[type="radio"]:checked + label {
+  background-color: rgb(64, 32, 73);
+  transform: scale(1.5);
+}
+
+#gender input[type="radio"]:checked + label svg {
+  fill: #78df6f;
 }
 
 #character-creator {
@@ -29,7 +73,6 @@ body {
   padding: 0 20px;
   border-radius: 10px;
   max-height: 98vh;
-  overflow-y: auto;
   scrollbar-width: none;
   display: flex;
   flex-direction: column;
@@ -39,6 +82,7 @@ body {
   cursor: default;
   max-width: 400px;
   width: 400px;
+  height: 98vh;
 }
 
 #character-creator > h1 {
@@ -61,124 +105,80 @@ body {
   z-index: -1;
 }
 
-#character-creator > ul {
+.tabs {
+  position: absolute;
+  width: 2rem;
   display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: column;
   align-items: center;
   text-align: center;
   list-style: none;
   gap: 1rem;
+  left: -2.5rem;
+  top: 1rem;
 }
 
-#character-creator > ul > li {
-  padding: 5px 20px;
+.tab-button {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.5rem;
   background-color: #78df6f;
-  border-radius: 7px;
-  transition: all 150ms ease-in-out;
-  cursor: pointer;
-  width: 100px;
-  text-align: center;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 1.1rem;
-  font-family: "Outfit";
-  text-shadow: none;
-  font-weight: bold;
+  justify-content: center;
+  transition: all 300ms ease-in-out;
+  border-radius: 0.75rem 0 0 0.75rem;
+  box-shadow: -0.25rem 0.25rem 0 0.25rem rgb(128, 0, 128);
 }
 
-#character-creator > ul > li:hover {
-  transform: translateY(-5px);
+.tab-button svg {
+  width: auto;
+  height: 100%;
+}
+
+.tab-button:hover {
   box-shadow: rgb(128, 0, 128) 0px 5px 1px 2px;
   transition: all 150ms ease-in-out;
 }
 
-#character-creator > ul > li:active {
-  transform: translateY(0);
-  box-shadow: rgba(182, 0, 182, 0) 0px 5px 1px 2px;
+.tab-button.active {
+  box-shadow: rgb(128, 0, 128) 0px 5px 1px 2px;
+  transition: all 150ms ease-in-out;
 }
 
-#characterForm {
-  display: flex;
+.tab-content {
   flex-direction: column;
   gap: 1rem;
 }
 
-#physical {
+fieldset {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: "Outfit";
+  border: none;
+  gap: 1rem;
 }
 
-#physical label {
+fieldset label {
   color: snow;
   text-shadow: black 1px 1px 2px;
-  font-family: "Outfit";
-  margin-top: 0.65rem;
-  margin-bottom: 0.2rem;
-}
-
-#physical select {
   display: flex;
-  flex-direction: column;
-  border-radius: 7px;
-  padding: 0.5rem 1rem;
-  width: 150px;
-  color: snow;
-  border: none;
-  appearance: none;
-  text-align: center;
-  justify-content: center;
-  align-self: center;
+  justify-content: space-between;
   align-items: center;
-  font-family: "Kanit";
-  outline: none;
-  transition: all 200ms ease-in-out;
-  cursor: pointer;
-  background-color: rgb(64, 32, 73);
 }
-
-#gender {
-  margin-bottom: 0.5rem;
-}
-
-#physical select:focus {
-  transition: all 200ms ease-in-out;
-  box-shadow: #8aff7f 0px 0px 5px;
-}
-#physical select::-webkit-scrollbar {
-  width: 8px;
-}
-#physical select::-webkit-scrollbar-thumb {
-  background-color: #8aff7f;
-  border-radius: 10px;
-}
-
-#physical select::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0);
-}
-
-#physical > h2 {
-  font-size: 1.35rem;
-  text-align: center;
-  position: relative;
+fieldset label span {
+  width: 3rem;
+  height: 2rem;
+  padding: 0.25rem 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(182, 0, 182);
   color: snow;
-  text-shadow: rgb(0, 0, 0) 1px 1px 10px;
-  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
 }
-
-#parecidosH {
-  display: flex;
-  flex-direction: column;
-  border: none;
-}
-
-#parecidosH > input[type="range"] {
+fieldset input[type="range"] {
   appearance: none;
   width: 100%;
   height: 8px;
@@ -186,7 +186,7 @@ body {
   border-radius: 5px;
 }
 
-#parecidosH > input[type="range"]::-webkit-slider-thumb {
+fieldset input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 20px;
@@ -196,53 +196,12 @@ body {
   cursor: pointer;
 }
 
-#parecidosH > input[type="range"]::-moz-range-thumb {
+fieldset input[type="range"]::-moz-range-thumb {
   width: 20px;
   height: 20px;
   background: rgb(182, 0, 182);
   border-radius: 50%;
   cursor: pointer;
-}
-
-#parecidosM {
-  display: flex;
-  flex-direction: column;
-  border: none;
-  margin-bottom: 1rem;
-}
-
-#parecidosM > input[type="range"] {
-  appearance: none;
-  width: 100%;
-  height: 8px;
-  background: #ddd;
-  border-radius: 5px;
-}
-
-#parecidosM > input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: rgb(161, 57, 161);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-#parecidosM > input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  background: rgb(182, 0, 182);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-#features {
-  flex-direction: column;
-}
-
-#clothing {
-  flex-direction: column;
 }
 
 .active {
@@ -285,25 +244,7 @@ body {
   text-shadow: none;
 }
 
-#features {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 0.75rem;
-  width: 100%;
-}
-
-#features > h2 {
-  font-size: 1.35rem;
-  text-align: center;
-  position: relative;
-  color: snow;
-  text-shadow: rgb(0, 0, 0) 1px 1px 10px;
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
-#features > details {
+details {
   width: 360px;
   display: flex;
   flex-direction: column;
@@ -313,7 +254,7 @@ body {
   overflow: hidden;
 }
 
-#features > details > summary {
+details > summary {
   list-style: none;
   background-color: rgb(64, 32, 73);
   margin-bottom: 5px;
@@ -324,7 +265,7 @@ body {
   box-sizing: border-box;
 }
 
-#features > details > div > fieldset {
+details > div > fieldset {
   display: flex;
   flex-direction: row;
   border: none;
@@ -335,7 +276,7 @@ body {
   height: auto;
 }
 
-#features > details > div > fieldset > label {
+details > div > fieldset > label {
   width: 65%;
   text-align: start;
   font-size: 1.1rem;
@@ -343,18 +284,8 @@ body {
   color: snow;
   text-shadow: black 1px 1px;
 }
-#features > details > div > fieldset > input {
+details > div > fieldset > input {
   width: 35%;
-}
-
-#features > details > div > fieldset > input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 8px;
-  background: #ddd;
-  border-radius: 5px;
-  outline: none;
-  transition: background 150ms ease-in-out;
 }
 
 #features

@@ -50,18 +50,18 @@ mp.events.add('custom:parents', (data) => {
     mp.console.logInfo('=== GUARDANDO PARENTS ===');
     mp.players.local.setHeadBlendData(
         // shape
-        data.mother,
-        data.father,
+        Number(data.mother),
+        Number(data.father),
         0,
 
         // skin
-        data.mother,
-        data.father,
+        Number(data.mother),
+        Number(data.father),
         0,
 
         // mixes
-        data.similar * 0.01,
-        data.similar * 0.01,
+        Number(data.similar) * 0.01,
+        Number(data.similar) * 0.01,
         0.0,
         false
     );

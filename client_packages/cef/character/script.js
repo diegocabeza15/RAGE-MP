@@ -1,11 +1,11 @@
 const parents = document.querySelectorAll('#physical input[type="range"]')
 parents.forEach((input) => {
     input.addEventListener('change', () => {
-        mp.trigger('custom:parents', {
+        mp.trigger('client:saveCustomization', JSON.stringify({
             father: Number(Array.from(parents).find(({ name }) => name == 'father').value),
             mother: Number(Array.from(parents).find(({ name }) => name == 'mother').value),
-            similar: Number(Array.from(parents).find(({ name }) => name == 'similar').value),
-        })
+            similar: Number(Array.from(parents).find(({ name }) => name == 'similar').value) * 0.01,
+        }))
     })
 })
 

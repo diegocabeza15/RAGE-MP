@@ -1,6 +1,15 @@
-function hideCharacterPanel() {
-    document.getElementById('character-creator').style.display = 'none';
-}
+const parents = document.querySelectorAll('#physical input[type="range"]')
+parents.forEach((input) => {
+    input.addEventListener('change', () => {
+        mp.trigger('custom:parents', {
+            father: Array.from(parents).find(({ name }) => name == 'father').value,
+            mother: Array.from(parents).find(({ name }) => name == 'mother').value,
+            similar: Array.from(parents).find(({ name }) => name == 'similar').value,
+        })
+    })
+})
+
+
 
 document.getElementById('save').addEventListener('click', () => {
     mp.trigger('client:saveCustomization', JSON.stringify({

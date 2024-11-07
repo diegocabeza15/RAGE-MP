@@ -41,7 +41,29 @@ mp.events.add("client:hideCustomizationPanel", () => {
 
 // Recibe datos de personalización del navegador
 mp.events.add("client:saveCustomization", (data) => {
-    console.log('=== GUARDANDO CHARACTER ===');
-    console.log(data)
+    mp.console.logInfo('=== GUARDANDO CHARACTER ===');
+    mp.console.logInfo(data)
     mp.events.callRemote("server:saveCustomization", data);
 });
+
+mp.events.add('custom:parents', (data) => {
+    mp.console.logInfo('=== GUARDANDO PARENTS ===');
+    mp.players.local.setHeadBlendData(
+        // shape
+        data.mother,
+        data.father,
+        0,
+
+        // skin
+        data.mother,
+        data.father,
+        0,
+
+        // mixes
+        data.similar * 0.01,
+        data.similar * 0.01,
+        0.0,
+        false
+    );
+})
+

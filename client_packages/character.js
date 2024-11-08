@@ -63,3 +63,10 @@ mp.events.add('custom:gender', (player, gender) => {
     player.setModel(player.model);
     player.spawn(player.position); // Asegúrate de hacer respawnear al jugador para aplicar el cambio correctamente
 });
+
+mp.events.add('custom:style', (player, style) => {
+    const { eyeColor = 0, hairStyle = 0, hairColor = 0, highlightHairColor = 0 } = JSON.parse(style)
+    mp.players.local.setEyeColor(eyeColor);
+    mp.players.local.setHairColor(hairColor, highlightHairColor)
+    mp.players.local.setComponentVariation(2, hairStyle, 0, 0);
+});

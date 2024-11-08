@@ -10,12 +10,25 @@ parents.forEach((input) => {
     })
 })
 
-document.getElementById('gender').addEventListener('change', (event) => {
-    // Obtener el género seleccionado (0 para masculino, 1 para femenino)
-    const gender = document.querySelector('input[name="gender"]:checked').value;
-    // Enviar al servidor el género seleccionado
-    mp.trigger('client:changeGender', Number(gender));
-});
+const genders = document.querySelectorAll('#gender input[type="radio"]')
+genders.forEach(gender => gender.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        mp.trigger('custom:gender', Number(event.target.value));;
+    }
+}))
+
+const styles = document.querySelectorAll('#colors input[type="range"]')
+genders.forEach(gender => gender.addEventListener('change', (event) => {
+    if (event.target.checked) {
+        mp.trigger('client:changeStyle', JSON.stringify({
+            eyeColor: Number(Array.from(styles).find(({ name }) => name == 'eyeColor').value),
+            hairStyle: Number(Array.from(styles).find(({ name }) => name == 'hairStyle').value),
+            hairColor: Number(Array.from(styles).find(({ name }) => name == 'hairColor').value),
+            highlightHairColor: Number(Array.from(styles).find(({ name }) => name == 'highlightHairColor').value)
+        }));;
+    }
+}))
+    ;
 
 
 document.getElementById('save').addEventListener('click', () => {

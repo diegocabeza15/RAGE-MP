@@ -56,10 +56,7 @@ mp.events.add('custom:parents', (data) => {
 })
 
 mp.events.add('custom:gender', (gender) => {
-    // Aplicar el cambio de modelo (esto hará que el jugador se vea con el género seleccionado)
     mp.players.local.model = gender
-    mp.players.local.setModel(mp.players.local.model);
-    mp.players.local.spawn(mp.players.local.position); // Asegúrate de hacer respawnear al jugador para aplicar el cambio correctamente
 });
 
 mp.events.add('custom:style', (style) => {

@@ -13,6 +13,9 @@ mp.events.add("client:showCustomizationPanel", () => {
         playerPosition.z + cameraHeight    // Ajustamos la altura para una vista completa
     );
 
+    mp.gui.cursor.show(true, true);
+    mp.players.local.freezePosition(true); // Congelar al personaje
+
     // Crear y configurar la cámara
     customizationCamera = mp.cameras.new('customizationCamera', cameraPosition, new mp.Vector3(0, 0, 0), 40);
     customizationCamera.pointAtCoord(playerPosition.x, playerPosition.y, playerPosition.z + 0.5); // Apunta al centro del personaje
@@ -64,5 +67,7 @@ mp.events.add('custom:parents', (data) => {
         0.0,
         false
     );
+    mp.gui.cursor.show(true, true);
+    mp.players.local.freezePosition(true); // Congelar al personaje
 })
 

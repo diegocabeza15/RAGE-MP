@@ -242,7 +242,8 @@ function loadPlayerCustomization(playerId) {
         const defaultCustomization = {
             father: 0,
             mother: 0,
-            similar: 0
+            similar: 0,
+            gender: 0
         };
 
         // Escribir el archivo con los datos base

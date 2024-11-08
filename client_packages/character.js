@@ -56,8 +56,34 @@ mp.events.add('custom:parents', (data) => {
 })
 
 mp.events.add('custom:gender', (gender = 0) => {
-    mp.players.local.setModel(mp.game.joaat(gender));
+    const maleModel = mp.game.joaat('mp_m_freemode_01');
+    const femaleModel = mp.game.joaat('mp_f_freemode_01');
+    if (gender === 0) { // Masculino
+        mp.players.local.model = maleModel;
+        setMaleAppearance();
+    } else { // Femenino
+        mp.players.local.model = femaleModel;
+        setFemaleAppearance();
+    }
 });
+
+// Configura la apariencia masculina predeterminada
+function setMaleAppearance() {
+    mp.players.local.setComponentVariation(2, 0, 0, 2); // Peinado masculino de ejemplo
+    mp.players.local.setComponentVariation(11, 0, 0, 2); // Camisa masculina de ejemplo
+    mp.players.local.setComponentVariation(8, 0, 0, 2); // Pantalones masculinos de ejemplo
+    mp.players.local.setComponentVariation(6, 0, 0, 2); // Zapatos masculinos de ejemplo
+}
+
+// Configura la apariencia femenina predeterminada
+function setFemaleAppearance() {
+    mp.players.local.setComponentVariation(2, 1, 0, 2); // Peinado femenino de ejemplo
+    mp.players.local.setComponentVariation(11, 1, 0, 2); // Camisa femenina de ejemplo
+    mp.players.local.setComponentVariation(8, 1, 0, 2); // Pantalones femeninos de ejemplo
+    mp.players.local.setComponentVariation(6, 1, 0, 2); // Zapatos femeninos de ejemplo
+    mp.players.local.setComponentVariation(4, 1, 0, 2); // Accesorios femeninos de ejemplo
+    mp.players.local.setComponentVariation(3, 1, 0, 2); // Atributos faciales femeninos de ejemplo
+}
 
 mp.events.add('custom:style', (style) => {
     const { eyeColor = 0, hairStyle = 0, hairColor = 0, highlightHairColor = 0 } = JSON.parse(style)

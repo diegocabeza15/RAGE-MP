@@ -13,7 +13,7 @@ parents.forEach((input) => {
 const genders = document.querySelectorAll('#gender input[type="radio"]')
 genders.forEach(gender => gender.addEventListener('change', (event) => {
     if (event.target.checked) {
-        mp.trigger('custom:gender', Number(event.target.value));;
+        return mp.trigger('custom:gender', Number(event.target.value));;
     }
 }))
 

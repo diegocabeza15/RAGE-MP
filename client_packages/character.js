@@ -55,8 +55,8 @@ mp.events.add('custom:parents', (data) => {
     mp.players.local.setHeadBlendData(mother, father, 0, mother, father, 0, similar, similar, 0.0, false);
 })
 
-mp.events.add('custom:gender', (gender) => {
-    mp.players.local.model = gender
+mp.events.add('custom:gender', (gender = 0) => {
+    mp.players.local.setModel(mp.game.joaat(gender));
 });
 
 mp.events.add('custom:style', (style) => {

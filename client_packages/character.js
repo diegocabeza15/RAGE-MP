@@ -59,9 +59,9 @@ mp.events.add('custom:gender', (player, gender) => {
     // Definir los modelos masculino y femenino
     const models = [mp.game.joaat('mp_m_freemode_01'), mp.game.joaat('mp_f_freemode_01')];  // Modelo masculino
     // Aplicar el cambio de modelo (esto hará que el jugador se vea con el género seleccionado)
-    player.model = models[gender]
-    player.setModel(player.model);
-    player.spawn(player.position); // Asegúrate de hacer respawnear al jugador para aplicar el cambio correctamente
+    mp.players.local.model = models[gender]
+    mp.players.local.setModel(mp.players.local.model);
+    mp.players.local.spawn(mp.players.local.position); // Asegúrate de hacer respawnear al jugador para aplicar el cambio correctamente
 });
 
 mp.events.add('custom:style', (player, style) => {

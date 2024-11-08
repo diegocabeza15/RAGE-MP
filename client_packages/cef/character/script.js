@@ -1,7 +1,8 @@
 const parents = document.querySelectorAll('#physical input[type="range"]')
 parents.forEach((input) => {
-    input.addEventListener('change', () => {
-        mp.trigger('client:saveCustomization', JSON.stringify({
+    input.addEventListener('change', (e) => {
+        e.preventDefault()
+        mp.trigger('custom:parents', JSON.stringify({
             father: Number(Array.from(parents).find(({ name }) => name == 'father').value),
             mother: Number(Array.from(parents).find(({ name }) => name == 'mother').value),
             similar: Number(Array.from(parents).find(({ name }) => name == 'similar').value) * 0.01,
@@ -13,13 +14,18 @@ parents.forEach((input) => {
 
 document.getElementById('save').addEventListener('click', () => {
     mp.trigger('client:saveCustomization', JSON.stringify({
-        gender: document.getElementById('gender').value
+        father: Number(Array.from(parents).find(({ name }) => name == 'father').value),
+        mother: Number(Array.from(parents).find(({ name }) => name == 'mother').value),
+        similar: Number(Array.from(parents).find(({ name }) => name == 'similar').value) * 0.01,
     }));
 });
 
 document.getElementById('cancel').addEventListener('click', () => {
-    mp.trigger('client:saveCustomization', {});
-    hideCharacterPanel();
+    mp.trigger('client:saveCustomization', JSON.stringify({
+        father: Number(Array.from(parents).find(({ name }) => name == 'father').value),
+        mother: Number(Array.from(parents).find(({ name }) => name == 'mother').value),
+        similar: Number(Array.from(parents).find(({ name }) => name == 'similar').value) * 0.01,
+    }));
 });
 
 function openTab(evt, tabName) {

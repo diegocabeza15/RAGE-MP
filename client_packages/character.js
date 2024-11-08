@@ -67,7 +67,5 @@ mp.events.add('custom:parents', (data) => {
         0.0,
         false
     );
-    mp.gui.cursor.show(true, true);
-    mp.players.local.freezePosition(true); // Congelar al personaje
 })
 

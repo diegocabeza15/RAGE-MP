@@ -76,13 +76,3 @@ mp.events.add("server:saveCustomization", (player, data) => {
     player.call("client:hideCustomizationPanel");
 });
 
-mp.events.add('server:previewCustom', (player, data) => {
-    const custom = JSON.parse(data)
-    const keys = Object.keys(custom)
-
-    if (keys.includes('parents')) {
-        player.setHeadBlend()
-    }
-
-
-})

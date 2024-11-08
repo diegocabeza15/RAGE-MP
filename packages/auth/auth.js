@@ -69,7 +69,7 @@ mp.events.add('server:loadAccount', async (player, username) => {
             player.model = models[gender];
             // Asegurarse de que los valores de similaridad sean correctos para evitar problemas con setHeadBlend
             const similarity = similar > 1 ? 1 : similar < 0 ? 0 : similar;
-            player.setHeadBlend(mother, father, 0, mother, father, 0, similarity, similarity, 0.0, false);
+            player.setCustomization(mother, father, 0, mother, father, 0, similarity, similarity, 0.0, false);
             //  Si no existe una posición en la base de datos, carga al jugador en la posición de spawn predeterminada
             if (rows[0].position === null) {
                 player.position = new mp.Vector3(mp.settings.defaultSpawnPosition)

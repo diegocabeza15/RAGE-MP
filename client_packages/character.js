@@ -63,5 +63,5 @@ mp.events.add('custom:style', (style) => {
     const { eyeColor = 0, hairStyle = 0, hairColor = 0, highlightHairColor = 0 } = JSON.parse(style)
     mp.players.local.setEyeColor(eyeColor);
     mp.players.local.setHairColor(hairColor, highlightHairColor)
-    mp.players.local.setComponentVariation(2, hairStyle, 0, 0);
+    mp.players.local.setComponentVariation(2, hairStyle, 0, 1);
 });

@@ -64,16 +64,18 @@ mp.events.add('server:loadAccount', async (player, username) => {
             player.sqlID = rows[0].id; // Nota: cambiado de ID a id
             player.name = username;
             player.setVariable('username', username);
-            //  Si no existe una posición en la base de datos, carga al jugador en la posición de spawn predeterminada
-            rows[0].position === null ?
-                player.position = new mp.Vector3(mp.settings.defaultSpawnPosition) :
-                player.position = new mp.Vector3(JSON.parse(rows[0].position));
-            const { father = 0, mother = 0, similar = 0, gender = 0 } = loadPlayerCustomization(rows[0].id)
+            const { father = 0, mother = 0, similar = 0, gender = 0 } = loadPlayerCustomization(rows[0].id);
             const models = [mp.joaat('mp_m_freemode_01'), mp.joaat('mp_f_freemode_01')];
             player.model = models[gender];
             // Asegurarse de que los valores de similaridad sean correctos para evitar problemas con setHeadBlend
             const similarity = similar > 1 ? 1 : similar < 0 ? 0 : similar;
             player.setHeadBlend(mother, father, 0, mother, father, 0, similarity, similarity, 0.0, false);
+            //  Si no existe una posición en la base de datos, carga al jugador en la posición de spawn predeterminada
+            if (rows[0].position === null) {
+                player.position = new mp.Vector3(mp.settings.defaultSpawnPosition)
+            } else {
+                player.position = new mp.Vector3(JSON.parse(rows[0].position));
+            }
             player.setVariable("loggedIn", true);
         }
     } catch (e) {

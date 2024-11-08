@@ -69,7 +69,7 @@ mp.events.add('server:loadAccount', async (player, username) => {
                 player.position = new mp.Vector3(mp.settings.defaultSpawnPosition) :
                 player.position = new mp.Vector3(JSON.parse(rows[0].position));
             const { father = 0, mother = 0, similar = 0, gender = 0 } = loadPlayerCustomization(rows[0].id)
-            const models = [mp.game.joaat('mp_m_freemode_01'), mp.game.joaat('mp_f_freemode_01')];
+            const models = [mp.joaat('mp_m_freemode_01'), mp.joaat('mp_f_freemode_01')];
             player.setModel(models[gender])
             player.setHeadBlend(mother, father, 0, mother, father, 0, similar, similar, 0.0, false)
             player.setVariable("loggedIn", true);

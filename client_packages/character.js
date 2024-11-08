@@ -55,16 +55,14 @@ mp.events.add('custom:parents', (data) => {
     mp.players.local.setHeadBlendData(mother, father, 0, mother, father, 0, similar, similar, 0.0, false);
 })
 
-mp.events.add('custom:gender', (player, gender) => {
-    // Definir los modelos masculino y femenino
-    const models = [mp.game.joaat('mp_m_freemode_01'), mp.game.joaat('mp_f_freemode_01')];  // Modelo masculino
+mp.events.add('custom:gender', (gender) => {
     // Aplicar el cambio de modelo (esto hará que el jugador se vea con el género seleccionado)
-    mp.players.local.model = models[gender]
+    mp.players.local.model = gender
     mp.players.local.setModel(mp.players.local.model);
     mp.players.local.spawn(mp.players.local.position); // Asegúrate de hacer respawnear al jugador para aplicar el cambio correctamente
 });
 
-mp.events.add('custom:style', (player, style) => {
+mp.events.add('custom:style', (style) => {
     const { eyeColor = 0, hairStyle = 0, hairColor = 0, highlightHairColor = 0 } = JSON.parse(style)
     mp.players.local.setEyeColor(eyeColor);
     mp.players.local.setHairColor(hairColor, highlightHairColor)

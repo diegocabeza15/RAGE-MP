@@ -10,6 +10,12 @@ parents.forEach((input) => {
     })
 })
 
+document.getElementById('gender').addEventListener('change', (event) => {
+    // Obtener el género seleccionado (0 para masculino, 1 para femenino)
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    // Enviar al servidor el género seleccionado
+    mp.trigger('client:changeGender', Number(gender));
+});
 
 
 document.getElementById('save').addEventListener('click', () => {
@@ -17,6 +23,7 @@ document.getElementById('save').addEventListener('click', () => {
         father: Number(Array.from(parents).find(({ name }) => name == 'father').value),
         mother: Number(Array.from(parents).find(({ name }) => name == 'mother').value),
         similar: Number(Array.from(parents).find(({ name }) => name == 'similar').value) * 0.01,
+        gender: document.querySelector('input[name="gender"]:checked').value
     }));
 });
 
@@ -25,6 +32,7 @@ document.getElementById('cancel').addEventListener('click', () => {
         father: Number(Array.from(parents).find(({ name }) => name == 'father').value),
         mother: Number(Array.from(parents).find(({ name }) => name == 'mother').value),
         similar: Number(Array.from(parents).find(({ name }) => name == 'similar').value) * 0.01,
+        gender: document.querySelector('input[name="gender"]:checked').value
     }));
 });
 

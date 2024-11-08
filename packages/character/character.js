@@ -32,8 +32,16 @@ mp.events.addCommand('personalizar', (player) => {
     player.heading = creatorPlayerHeading;
 
     console.log('=== INICIO CHARACTER CLIENT ===');
+
+    const playerFile = path.join(folder, `player_${player.id}_customization.json`);
+    if (fs.existsSync(playerFile)) {
+        const data = fs.readFileSync(playerFile, 'utf8');
+        const { customization } = JSON.parse(data);
+        player.call("client:showCustomizationPanel", customization)
+
+    }
     // Llamar al evento del cliente
-    player.call("client:showCustomizationPanel")
+    player.call("client:showCustomizationPanel", null)
 });
 
 

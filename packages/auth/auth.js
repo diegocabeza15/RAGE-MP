@@ -15,8 +15,8 @@ mp.events.add('server:registerAccount', async (player, username, email, password
                 console.log(`${username} has registered a new account.`)
                 successLoginHandle(player, 'registered', username);
                 player.call('toggleCreator', [true, null]);
-                player.model = mp.joaat("mp_m_freemode_01"); // Modelo personaj
-                player.sendToCreator();
+                player.model = mp.joaat("mp_m_freemode_01");
+                mp.events.call("personalizar", player);
             } else {
                 failedLoginHandle(player, 'takeninfo');
             }
@@ -68,11 +68,11 @@ mp.events.add('server:loadAccount', async (player, username) => {
             rows[0].position === null ?
                 player.position = new mp.Vector3(mp.settings.defaultSpawnPosition) :
                 player.position = new mp.Vector3(JSON.parse(rows[0].position));
-            const { father = 0, mother = 0, similar = 0 } = loadPlayerCustomization(rows[0].id)
+            const { father = 0, mother = 0, similar = 0, gender = 0 } = loadPlayerCustomization(rows[0].id)
+            const models = [mp.game.joaat('mp_m_freemode_01'), mp.game.joaat('mp_f_freemode_01')];
+            player.setModel(models[gender])
             player.setHeadBlend(mother, father, 0, mother, father, 0, similar, similar, 0.0, false)
             player.setVariable("loggedIn", true);
-
-
         }
     } catch (e) {
         console.log('Error en loadAccount:', e);

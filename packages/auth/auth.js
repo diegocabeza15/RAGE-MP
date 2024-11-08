@@ -68,6 +68,8 @@ mp.events.add('server:loadAccount', async (player, username) => {
             rows[0].position === null ?
                 player.position = new mp.Vector3(mp.settings.defaultSpawnPosition) :
                 player.position = new mp.Vector3(JSON.parse(rows[0].position));
+            const { father = 0, mother = 0, similar = 0 } = loadPlayerCustomization(rows[0].id)
+            player.setHeadBlend(mother, father, 0, mother, father, 0, similar, similar, 0.0, false)
             player.setVariable("loggedIn", true);
 
 
@@ -227,3 +229,26 @@ mp.events.add('serverRegisterAccount', async (player, username, password, email)
         player.call('showNotification', ['Error en el registro']);
     }
 });
+
+function loadPlayerCustomization(playerId) {
+    const filePath = `packages/character/data/player_${playerId}_customization.json`;
+    try {
+        const data = fs.readFileSync(filePath, 'utf8');
+        return JSON.parse(data).customization;
+    } catch (error) {
+        console.error(`Error al cargar la personalización del jugador ${playerId}:`, error);
+
+        // Crear un archivo con datos base si no existe
+        const defaultCustomization = {
+            father: 0,
+            mother: 0,
+            similar: 0
+        };
+
+        // Escribir el archivo con los datos base
+        fs.writeFileSync(filePath, JSON.stringify({ id: playerId, customization: defaultCustomization }, null, 2), 'utf8');
+        console.log(`Archivo creado con datos base para el jugador ${playerId}.`);
+
+        return defaultCustomization; // Retornar los datos base
+    }
+}

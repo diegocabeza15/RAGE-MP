@@ -52,20 +52,6 @@ mp.events.add("client:saveCustomization", (data) => {
 mp.events.add('custom:parents', (data) => {
     mp.console.logInfo('=== GUARDANDO PARENTS ===');
     const { mother = 0, father = 0, similar = 1.0 } = JSON.parse(data)
-    mp.players.local.setHeadBlendData(
-        // shape
-        mother,
-        father,
-        0,
-        // skin
-        mother,
-        father,
-        0,
-        // mixes
-        similar,
-        similar,
-        0.0,
-        false
-    );
+    mp.players.local.setHeadBlendData(mother, father, 0, mother, father, 0, similar, similar, 0.0, false);
 })
 

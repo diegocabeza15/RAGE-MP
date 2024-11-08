@@ -1,4 +1,8 @@
 {
   "id": 0,
-  "customization": 0
+  "customization": {
+    "father": 30,
+    "mother": 1,
+    "similar": 0.01
+  }
 }

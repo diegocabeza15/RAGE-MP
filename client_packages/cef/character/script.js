@@ -18,18 +18,45 @@ genders.forEach(gender => gender.addEventListener('change', (event) => {
 }))
 
 const styles = document.querySelectorAll('#colors input[type="range"]')
-genders.forEach(gender => gender.addEventListener('change', (event) => {
-    if (event.target.checked) {
-        mp.trigger('client:changeStyle', JSON.stringify({
-            eyeColor: Number(Array.from(styles).find(({ name }) => name == 'eyeColor').value),
-            hairStyle: Number(Array.from(styles).find(({ name }) => name == 'hairStyle').value),
-            hairColor: Number(Array.from(styles).find(({ name }) => name == 'hairColor').value),
-            highlightHairColor: Number(Array.from(styles).find(({ name }) => name == 'highlightHairColor').value)
-        }));;
-    }
-}))
-    ;
+styles.forEach(style => style.addEventListener('change', (event) => {
+    mp.trigger('client:changeStyle', JSON.stringify({
+        eyeColor: Number(Array.from(styles).find(({ name }) => name == 'eyeColor').value),
+        hairStyle: Number(Array.from(styles).find(({ name }) => name == 'hairStyle').value),
+        hairColor: Number(Array.from(styles).find(({ name }) => name == 'hairColor').value),
+        highlightHairColor: Number(Array.from(styles).find(({ name }) => name == 'highlightHairColor').value)
+    }));;
+}));
 
+
+document.querySelectorAll('[contenteditable]').forEach((element) => {
+    element.addEventListener('input', (e) => {
+        const value = e.target.textContent;
+        const fieldset = e.target.closest('fieldset')
+        const input = fieldset.querySelector("[type='range']")
+        const numericValue = value.replace(/\D/g, '');
+        const maxValue = input.getAttribute('max');
+        const minValue = input.getAttribute('min');
+        if (numericValue > maxValue) {
+            e.target.textContent = maxValue;
+            input.value = maxValue;
+        } else if (numericValue < minValue) {
+            e.target.textContent = minValue;
+            input.value = minValue;
+        } else {
+            e.target.textContent = numericValue;
+            input.value = numericValue;
+        }
+    });
+})
+
+document.querySelectorAll('[type="range"]').forEach((range) => {
+    range.addEventListener('change', (e) => {
+        const { value } = e.target
+        const fieldset = e.target.closest('fieldset')
+        const indicator = fieldset.querySelector('[contenteditable]')
+        indicator.textContent = value
+    })
+})
 
 document.getElementById('save').addEventListener('click', () => {
     mp.trigger('client:saveCustomization', JSON.stringify({

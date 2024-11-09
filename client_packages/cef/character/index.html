@@ -9,6 +9,13 @@
 </head>
 
 <body>
+
+  <form action="" id="actionsCamera">
+    <button type="button" id="btnCameraBody">Cuerpo</button>
+    <button type="button" id="btnCameraFace">Cara</button>
+  </form>
+
+
   <form id="gender">
     <input type="radio" id="gender-m" name="gender" value="0">
     <label for="gender-m">
@@ -64,34 +71,34 @@
       <!-- Características Físicas -->
       <section id="physical" class="tab-content">
         <fieldset>
-          <label for="father">Padre: <span></span></label>
+          <label for="father">Padre: <span contenteditable="true">1</span></label>
           <input type="range" min="0" max="45" name="father" step="1" value="1" id="parecidoFather" />
         </fieldset>
         <fieldset>
-          <label for="mother">Madre: <span></span></label>
+          <label for="mother">Madre: <span contenteditable="true">1</span></label>
           <input type="range" min="0" max="45" name="mother" step="1" value="1" id="parecidoFather" />
         </fieldset>
         <fieldset>
-          <label for="similar">Semejansa<span></span></label>
+          <label for="similar">Semejansa<span contenteditable="true">1</span></label>
           <input type="range" name="similar" min="0" max="100" step="1" value="1" id="similar" />
         </fieldset>
       </section>
 
       <section id="colors" class="tab-content">
         <fieldset>
-          <label for="eyeColor">Color de Ojos: <span></span></label>
+          <label for="eyeColor">Color de Ojos: <span contenteditable="true">1</span></label>
           <input type="range" min="0" max="31" name="eyeColor" step="1" value="1" id="eyeColor" />
         </fieldset>
         <fieldset>
-          <label for="hairStyle">Pelo <span></span></label>
+          <label for="hairStyle">Pelo <span contenteditable="true">1</span></label>
           <input type="range" min="0" max="76" name="hairStyle" step="1" value="1" id="hairStyle" />
         </fieldset>
         <fieldset>
-          <label for="hairColor">Color de Pelo: <span></span></label>
+          <label for="hairColor">Color de Pelo: <span contenteditable="true">1</span></label>
           <input type="range" min="0" max="48" name="hairColor" step="1" value="1" id="hairColor" />
         </fieldset>
         <fieldset>
-          <label for="highlightHairColor">Color de detalles de Pelo: <span></span></label>
+          <label for="highlightHairColor">Color de detalles de Pelo: <span contenteditable="true">1</span></label>
           <input type="range" min="0" max="48" name="highlightHairColor" step="1" value="1" id="highlightHairColor" />
         </fieldset>
       </section>
@@ -218,15 +225,19 @@
       <!-- Vestimenta -->
       <section id="clothes" class="tab-content" style="display: none">
         <fieldset>
-          <label for="tops">Tops</label>
+          <label for="tops">Undershirts <span contenteditable="true">1</span></label>
           <input type="range" min="0" max="392" name="tops" step="1" value="1" id="tops" />
         </fieldset>
         <fieldset>
-          <label for="legs">Pantalones</label>
+          <label for="tops">Tops <span contenteditable="true">1</span></label>
+          <input type="range" min="0" max="392" name="tops" step="1" value="1" id="tops" />
+        </fieldset>
+        <fieldset>
+          <label for="legs">Pantalones <span contenteditable="true">1</span></label>
           <input type="range" min="0" max="143" name="legs" step="1" value="1" id="legs" />
         </fieldset>
         <fieldset>
-          <label for="shoes">Zapatos</label>
+          <label for="shoes">Zapatos <span contenteditable="true">1</span></label>
           <input type="range" min="0" max="101" name="shoes" step="1" value="1" id="shoes" />
         </fieldset>
 

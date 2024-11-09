@@ -39,6 +39,7 @@ mp.events.add("client:hideCustomizationPanel", () => {
         customizationCamera = null;
         mp.game.cam.renderScriptCams(false, false, 0, true, false); // Regresa a la cámara predeterminada
     }
+    mp.players.local.freezePosition(false); // Descongelar al personaje
     mp.gui.cursor.show(false, false); // Oculta el cursor del mouse
 });
 
@@ -69,7 +70,7 @@ mp.events.add('custom:gender', (gender = 0) => {
 
 // Configura la apariencia masculina predeterminada
 function setMaleAppearance() {
-    mp.players.local.setComponentVariation(2, 0, 0, 2); // Peinado masculino de ejemplo
+    mp.players.local.setComponentVariation(2, 51, 0, 2); // Peinado masculino de ejemplo
     mp.players.local.setComponentVariation(11, 0, 0, 2); // Camisa masculina de ejemplo
     mp.players.local.setComponentVariation(8, 0, 0, 2); // Pantalones masculinos de ejemplo
     mp.players.local.setComponentVariation(6, 0, 0, 2); // Zapatos masculinos de ejemplo
@@ -89,5 +90,5 @@ mp.events.add('custom:style', (style) => {
     const { eyeColor = 0, hairStyle = 0, hairColor = 0, highlightHairColor = 0 } = JSON.parse(style)
     mp.players.local.setEyeColor(eyeColor);
     mp.players.local.setHairColor(hairColor, highlightHairColor)
-    mp.players.local.setComponentVariation(2, hairStyle, 0, 1);
+    mp.players.local.setComponentVariation(2, hairStyle, 0, 2);
 });

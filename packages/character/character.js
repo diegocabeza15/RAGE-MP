@@ -113,6 +113,7 @@ mp.events.addCommand('init', (player, sexo) => {
         player.setClothes(4, 0, 0, 2); // legs 
         player.setClothes(6, 3, 0, 2); // shoes 
         player.setClothes(2, 15, 1, 2); // hair 
+        player.setHairColor(45, 29);
     } else {
         console.log("El sexo especificado no es válido. Debe ser 'm' o 'f'.");
         return;

@@ -100,13 +100,13 @@ mp.events.addCommand('init', (player, sexo) => {
     }
 
     if (sexo === 'm') {
-        player.model = mp.game.joaat('mp_m_freemode_01');
+        player.model = mp.joaat('mp_m_freemode_01');
         player.setClothes(11, 267, 1, 2); // top 
         player.setClothes(3, 76, 0, 2); // torso 
         player.setClothes(4, 31, 0, 2); // legs 
         player.setClothes(6, 27, 0, 2); // shoes 
     } else if (sexo === 'f') {
-        player.model = mp.game.joaat('mp_f_freemode_01');
+        player.model = mp.joaat('mp_f_freemode_01');
         player.setClothes(11, 165, 1, 2); // top 
         player.setClothes(3, 78, 0, 2); // torso 
         player.setClothes(4, 4, 0, 2); // legs 

@@ -102,15 +102,15 @@ mp.events.addCommand('init', (player, sexo) => {
     if (sexo === 'm') {
         player.model = mp.joaat('mp_m_freemode_01');
         player.setClothes(11, 267, 1, 2); // top 
-        player.setClothes(3, 76, 0, 2); // torso 
+        player.setClothes(3, 6, 0, 2); // guantes 
         player.setClothes(4, 31, 0, 2); // legs 
         player.setClothes(6, 27, 0, 2); // shoes 
     } else if (sexo === 'f') {
         player.model = mp.joaat('mp_f_freemode_01');
-        player.setClothes(11, 165, 1, 2); // top 
-        player.setClothes(3, 78, 0, 2); // torso 
-        player.setClothes(4, 4, 0, 2); // legs 
-        player.setClothes(6, 26, 0, 2); // shoes 
+        player.setClothes(11, 27, 0, 2); // top 
+        player.setClothes(3, 0, 0, 2); // guantes 
+        player.setClothes(4, 0, 0, 2); // legs 
+        player.setClothes(6, 3, 0, 2); // shoes 
     } else {
         console.log("El sexo especificado no es válido. Debe ser 'm' o 'f'.");
         return;

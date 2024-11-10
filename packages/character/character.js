@@ -108,7 +108,7 @@ mp.events.addCommand('init', (player, sexo) => {
     } else if (sexo === 'f') {
         player.model = mp.joaat('mp_f_freemode_01');
         player.setClothes(11, 27, 0, 2); // top 
-        player.setClothes(3, 0, 0, 2); // guantes 
+        player.setClothes(3, 15, 0, 2); // guantes 
         player.setClothes(4, 0, 0, 2); // legs 
         player.setClothes(6, 3, 0, 2); // shoes 
     } else {

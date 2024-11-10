@@ -1,9 +1,9 @@
 {
   "id": 0,
   "customization": {
-    "father": 16,
-    "mother": 32,
-    "similar": 0.72,
-    "gender": "0"
+    "father": 15,
+    "mother": 15,
+    "similar": 0,
+    "gender": "1"
   }
 }

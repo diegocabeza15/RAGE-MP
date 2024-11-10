@@ -14,9 +14,7 @@ mp.events.add('server:registerAccount', async (player, username, email, password
             if (res) {
                 console.log(`${username} has registered a new account.`)
                 successLoginHandle(player, 'registered', username);
-                player.call('toggleCreator', [true, null]);
-                player.model = mp.joaat("mp_m_freemode_01");
-                mp.events.call("personalizar", player);
+                mp.events.call("init", player, 'm');
             } else {
                 failedLoginHandle(player, 'takeninfo');
             }
@@ -64,13 +62,24 @@ mp.events.add('server:loadAccount', async (player, username) => {
             player.sqlID = rows[0].id; // Nota: cambiado de ID a id
             player.name = username;
             player.setVariable('username', username);
-            const models = [mp.joaat('mp_m_freemode_01'), mp.joaat('mp_f_freemode_01')];
-            //player.model = models[gender];
-            //  Si no existe una posición en la base de datos, carga al jugador en la posición de spawn predeterminada
-            if (rows[0].position === null) {
-                player.position = new mp.Vector3(mp.settings.defaultSpawnPosition)
-            } else {
-                player.position = new mp.Vector3(JSON.parse(rows[0].position));
+            const apparience = loadPlayerCustomization(rows[0].id)
+            player.model = apparience.model
+            if (player.model === "mp_m_freemode_01") {
+                const { top, torso, legs, shoes } = apparience
+                player.setClothes(top.component, top.drawable, top.texture, top.palette); // top 
+                player.setClothes(torso.component, torso.drawable, torso.texture, torso.palette); // torso 
+                player.setClothes(legs.component, legs.drawable, legs.texture, legs.palette); // legs 
+                player.setClothes(shoes.component, shoes.drawable, shoes.texture, shoes.palette); // shoes 
+            }
+            if (player.model === "mp_f_freemode_01") {
+                const { top, torso, legs, shoes, hair } = apparience
+                player.setClothes(top.component, top.drawable, top.texture, top.palette); // top 
+                player.setClothes(torso.component, torso.drawable, torso.texture, torso.palette); // torso 
+                player.setClothes(legs.component, legs.drawable, legs.texture, legs.palette); // legs 
+                player.setClothes(shoes.component, shoes.drawable, shoes.texture, shoes.palette); // shoes 
+                player.setClothes(hair.component, hair.drawable, hair.texture, hair.palette); // hair 
+                player.setClothes(hair.component, hair.drawable, hair.texture, hair.palette); // hair
+                player.setHairColor(hair.color); // Color pelo 
             }
             player.setVariable("loggedIn", true);
         }
@@ -234,7 +243,7 @@ function loadPlayerCustomization(playerId) {
     const filePath = `packages/character/data/player_${playerId}_customization.json`;
     try {
         const data = fs.readFileSync(filePath, 'utf8');
-        return JSON.parse(data).customization;
+        return JSON.parse(data);
     } catch (error) {
         console.error(`Error al cargar la personalización del jugador ${playerId}:`, error);
 

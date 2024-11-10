@@ -1,9 +1,14 @@
 {
-  "id": 10,
-  "customization": {
-    "father": 40,
-    "mother": 23,
-    "similar": 0,
-    "gender": 0
+  "model": "mp_m_freemode_01",
+  "top": { "component": 11, "drawable": 27, "texture": 0, "palette": 2 },
+  "torso": { "component": 3, "drawable": 0, "texture": 0, "palette": 2 },
+  "undershit": { "component": 8, "drawable": 15, "texture": 0, "palette": 2 },
+  "legs": { "component": 4, "drawable": 0, "texture": 0, "palette": 2 },
+  "shoes": { "component": 6, "drawable": 3, "texture": 0, "palette": 2 },
+  "hair": {
+    "component": 2,
+    "drawable": 15,
+    "texture": 1,
+    "palette": 0
   }
 }
